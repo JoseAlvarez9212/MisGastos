@@ -1,2 +1,2 @@
 # MisGastos
-App desarrollada en xamarin nativo Android/iOS para administrar los gastos hormiga
+App desarrollada en Xamarin Forms con Prism (Android/iOS) para administrar los gastos hormiga
