@@ -106,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MisGastos.Prism\MisGastos.Prism.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{918A669D-EF16-4040-AF3F-47665F107D5D}</Project>
       <Name>MisGastos.Prism</Name>
     </ProjectReference>
   </ItemGroup>
