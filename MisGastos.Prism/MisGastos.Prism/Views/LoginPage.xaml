@@ -8,13 +8,13 @@
     <StackLayout Orientation="Vertical"
                  Padding="20">
         <StackLayout VerticalOptions="CenterAndExpand">
-            <Entry Text="{Binding userEntry}" 
-                   Placeholder="Usuario">
+            <Entry Text="{Binding EmailEntry}" 
+                   Placeholder="Email">
             </Entry>
-            <Entry Text="{Binding passwordEntry}" 
+            <Entry Text="{Binding PasswordEntry}" 
                    Placeholder="Password">
             </Entry>
-            <Button Command="{Binding loginButtonCommand}" 
+            <Button Command="{Binding LoginButtonCommand}" 
                     Text="Iniciar Sesion">
             </Button>
             <Button Command="{Binding registerButtonCommand}" 

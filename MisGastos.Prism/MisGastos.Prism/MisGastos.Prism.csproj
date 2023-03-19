@@ -8,6 +8,9 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.4" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,4 +25,16 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ItemViewModels\" />
+    <None Remove="Models\" />
+    <None Remove="Models\Dtos\" />
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ItemViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Models\Dtos\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>

@@ -3,6 +3,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="MisGastos.Prism.Views.HomePage">
-  
+             x:Class="MisGastos.Prism.Views.HomePage"
+             Title="{Binding Title}">
+  <AbsoluteLayout BackgroundColor="Red">
+      <BoxView Color="LightPink"
+               AbsoluteLayout.LayoutBounds="0,0,1,60"
+               AbsoluteLayout.LayoutFlags="WidthProportional"
+               CornerRadius="20">          
+      </BoxView>
+      <StackLayout BackgroundColor="LightPink"
+                   AbsoluteLayout.LayoutBounds="0,0,1,40"
+                   AbsoluteLayout.LayoutFlags="WidthProportional">
+          <StackLayout Orientation="Horizontal"
+                       VerticalOptions="EndAndExpand"
+                       Padding="20,0">
+              <Label Text="Actividad:"/>
+              <Label Text="Mis Gastos >"/>
+            </StackLayout>
+      </StackLayout>
+
+      <StackLayout AbsoluteLayout.LayoutFlags="SizeProportional"
+                   AbsoluteLayout.LayoutBounds="0,60,1,1"
+                   BackgroundColor="Red">
+            <CollectionView ItemsSource="{Binding Expenses}"
+                            IsGrouped="True"
+                            Margin="10">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Date}"/>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0"
+                                         Grid.Column="0"
+                                         Padding="0,5">
+                                <Grid BackgroundColor="LightSkyBlue"
+                                      Padding="10,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0"/>
+                                    <StackLayout Grid.Column="1"
+                                                 VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Title}"/>
+                                        <Label Text="{Binding Description}"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2"
+                                                 Orientation="Horizontal"
+                                                 VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Amount, StringFormat='{0:C2}'}"/>
+                                        <Image/>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+      <BoxView Color="LightPink"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               AbsoluteLayout.LayoutBounds=".9,.9,60,60"
+               CornerRadius="20">
+      </BoxView>
+  </AbsoluteLayout>
 </ContentPage>
