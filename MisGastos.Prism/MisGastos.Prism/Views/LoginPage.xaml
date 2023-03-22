@@ -4,23 +4,63 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MisGastos.Prism.Views.LoginPage"
-             Title="{Binding Title}">
-    <StackLayout Orientation="Vertical"
-                 Padding="20">
-        <StackLayout VerticalOptions="CenterAndExpand">
-            <Entry Text="{Binding EmailEntry}" 
-                   Placeholder="Email">
-            </Entry>
-            <Entry Text="{Binding PasswordEntry}" 
-                   Placeholder="Password">
-            </Entry>
-            <Button Command="{Binding LoginButtonCommand}" 
-                    Text="Iniciar Sesion">
-            </Button>
-            <Button Command="{Binding registerButtonCommand}" 
-                    Text="Registrate">
-            </Button>
-        </StackLayout>
-    </StackLayout>
+             Title="{Binding Title}"
+             BackgroundColor="#F6F2F5">
+    <StackLayout>
+        <RelativeLayout>
+        <StackLayout RelativeLayout.HeightConstraint ="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.4,Constant=0}"
+                     RelativeLayout.WidthConstraint ="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1,Constant=0}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                     BackgroundColor="#4F0A3A">
+            </StackLayout>
+        <StackLayout RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.2, Constant=0}"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                     RelativeLayout.HeightConstraint ="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.6,Constant=0}"
+                     BackgroundColor="Transparent"
+                     Padding="20">
+            <Frame Padding="20,20"
+                   VerticalOptions="CenterAndExpand"
+                   CornerRadius="10">
+                <StackLayout>
+                    <Label Text="Mis Gastos"
+                           FontSize="Subtitle"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"
+                           Padding="0,0,0,10"/>
+                    <Entry Text="{Binding EmailEntry}" 
+                        Placeholder="Email">
+                    </Entry>
+                    <Entry Text="{Binding PasswordEntry}" 
+                            Placeholder="Password"
+                           Margin="0,0,0,20">
+                    </Entry>
+                    <Button Command="{Binding LoginButtonCommand}" 
+                            Text="Entrar"
+                            BackgroundColor="#4F0A3A"
+                            BorderColor="Transparent"
+                            TextColor="White">
+                    </Button>
+                    <Button Command="{Binding RegisterButtonCommand}" 
+                            Text="Registrate"
+                            BackgroundColor="Transparent"
+                            TextColor="#4F0A3A"
+                            BorderColor="#4F0A3A">
+                    </Button>
 
+                    <StackLayout Padding="0,20,0,0"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Label Text="Inicia sesion con"
+                               HorizontalTextAlignment="Center"/>
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="20,0,20,0">
+                            <Button Text="F"/>
+                            <Button Text="G"/>
+                            <Button Text="A"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </RelativeLayout>
+    </StackLayout>
 </ContentPage>
