@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MisGastos.Prism.Views.LoginPage"
+             xmlns:strings="clr-namespace:MisGastos.Prism.Helpers;assembly=MisGastos.Prism"
              Title="{Binding Title}"
              BackgroundColor="#F6F2F5">
     <StackLayout>
@@ -22,26 +23,26 @@
                    VerticalOptions="CenterAndExpand"
                    CornerRadius="10">
                 <StackLayout>
-                    <Label Text="Mis Gastos"
+                    <Label Text="{strings:StringsMarkup Name=LoginAppNameText}"
                            FontSize="Subtitle"
                            HorizontalTextAlignment="Center"
                            FontAttributes="Bold"
                            Padding="0,0,0,10"/>
                     <Entry Text="{Binding EmailEntry}" 
-                        Placeholder="Email">
+                           Placeholder="{strings:StringsMarkup Name=LoginEmailEntryText}">
                     </Entry>
                     <Entry Text="{Binding PasswordEntry}" 
-                            Placeholder="Password"
+                           Placeholder="{strings:StringsMarkup Name=LoginPasswordEntryText}"
                            Margin="0,0,0,20">
                     </Entry>
                     <Button Command="{Binding LoginButtonCommand}" 
-                            Text="Entrar"
+                            Text="{strings:StringsMarkup Name=LoginEnterButton}"
                             BackgroundColor="#4F0A3A"
                             BorderColor="Transparent"
                             TextColor="White">
                     </Button>
                     <Button Command="{Binding RegisterButtonCommand}" 
-                            Text="Registrate"
+                            Text="{strings:StringsMarkup Name=LoginRegisterButton}"
                             BackgroundColor="Transparent"
                             TextColor="#4F0A3A"
                             BorderColor="#4F0A3A">

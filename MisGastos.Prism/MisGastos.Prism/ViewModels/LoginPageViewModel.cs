@@ -1,6 +1,7 @@
 ﻿using DryIoc;
 using Firebase.Auth;
 using Firebase.Auth.Providers;
+using MisGastos.Prism.Services.Resources.Strings;
 using MisGastos.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
@@ -16,14 +17,16 @@ namespace MisGastos.Prism.ViewModels
     public class LoginPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private IStringsService _stringsService;
         private string _emailEntry;
         private string _passwordEntry;
         private DelegateCommand _loginButtonCommand;
 
-        public LoginPageViewModel(INavigationService navigationService) : base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService, IStringsService stringsService) : base(navigationService)
         {
             _navigationService = navigationService;
-            Title = "Login";
+            _stringsService = stringsService;
+            //Title = _stringsService.LoginEmailEntryText;
         }
 
         public DelegateCommand LoginButtonCommand =>

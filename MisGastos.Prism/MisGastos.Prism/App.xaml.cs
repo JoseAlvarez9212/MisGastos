@@ -1,3 +1,4 @@
+using MisGastos.Prism.Services.Resources.Strings;
 using MisGastos.Prism.ViewModels;
 using MisGastos.Prism.Views;
 using Prism;
@@ -28,6 +29,8 @@ namespace MisGastos.Prism
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+
+            containerRegistry.Register<IStringsService, StringsService>();
 
             containerRegistry.RegisterForNavigation<MyNavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();

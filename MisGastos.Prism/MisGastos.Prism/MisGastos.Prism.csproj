@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\strings.json" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Views\AddExpensePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -31,11 +34,18 @@
     <None Remove="Models\" />
     <None Remove="Models\Dtos\" />
     <None Remove="Services\" />
+    <None Remove="Services\Resources\" />
+    <None Remove="Services\Resources\Strings\" />
+    <None Remove="Helpers\" />
+    <None Remove="Assets\strings.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
     <Folder Include="Models\" />
     <Folder Include="Models\Dtos\" />
     <Folder Include="Services\" />
+    <Folder Include="Services\Resources\" />
+    <Folder Include="Services\Resources\Strings\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>
