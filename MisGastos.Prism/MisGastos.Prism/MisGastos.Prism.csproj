@@ -8,6 +8,45 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.4" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\strings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\AddExpensePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ItemViewModels\" />
+    <None Remove="Models\" />
+    <None Remove="Models\Dtos\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Resources\" />
+    <None Remove="Services\Resources\Strings\" />
+    <None Remove="Helpers\" />
+    <None Remove="Assets\strings.json" />
+    <None Remove="Services\Firebase\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ItemViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Models\Dtos\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Resources\" />
+    <Folder Include="Services\Resources\Strings\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\Firebase\" />
+  </ItemGroup>
 </Project>

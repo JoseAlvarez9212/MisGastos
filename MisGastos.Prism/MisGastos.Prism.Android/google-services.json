@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "542994428680",
+    "firebase_url": "https://misgastos-d5408-default-rtdb.firebaseio.com",
+    "project_id": "misgastos-d5408",
+    "storage_bucket": "misgastos-d5408.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542994428680:android:daabaab5bb39528cc8b2bd",
+        "android_client_info": {
+          "package_name": "com.josedev.misgastos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542994428680-bfmndmnlisq9t70sha4tq1s2o4l6hkts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgqP49rWZ6Tbr35KMx_D5xk1q_R20vhYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542994428680-bfmndmnlisq9t70sha4tq1s2o4l6hkts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

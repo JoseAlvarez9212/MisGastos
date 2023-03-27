@@ -1,0 +1,23 @@
+﻿{
+  "LoginAppNameText": {
+    "es": "Mis Gastos",
+    "en": "MyExpense"
+  },
+  "LoginEmailEntryText": {
+    "es": "Correo electrónico",
+    "en": "Email"
+  },
+  "LoginPasswordEntryText": {
+    "es": "Contraseña",
+    "en": "Password"
+  },
+  "LoginEnterButton": {
+    "es": "Entrar",
+    "en": "Enter"
+  },
+  "LoginRegisterButton": {
+    "es": "Registrate",
+    "en": "Register"
+  }
+}
+

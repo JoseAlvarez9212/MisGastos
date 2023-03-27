@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MisGastos.Prism.Views.HomePage"
+             Title="{Binding Title}"         
+             BackgroundColor="#F6F2F5">
+     <RelativeLayout>
+        <!-- Transaction -->
+        <StackLayout Padding="0,0,0,5">
+            <AbsoluteLayout>
+                <StackLayout BackgroundColor="#4F0A3A"
+                            AbsoluteLayout.LayoutBounds="0,0,1,30"
+                            AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="End"
+                               Padding="10,0">
+                      <Label Text="Mis Gastos:"
+                             TextColor="White"
+                             VerticalTextAlignment="Center"/>
+                      <Label Text="$395.00"
+                             TextColor="White"
+                             FontSize="Subtitle"
+                             FontAttributes="Bold"/>
+                    </StackLayout>
+                </StackLayout>
+            </AbsoluteLayout>
+            <CollectionView ItemsSource="{Binding MyExpenses}"
+                            IsGrouped="True"
+                            Margin="10,0">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0,0,0,10">
+                            <Label Text="{Binding Date}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="Subtitle"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0"
+                                         Grid.Column="0"
+                                         Padding="0,1">
+                                <Frame CornerRadius="5"
+                                       HasShadow="False"
+                                       BackgroundColor="White"
+                                       Padding="5">
+                                    <Grid Padding="10,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0"/>
+                                        <StackLayout Grid.Column="1"
+                                                     VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Title}"
+                                                   FontSize="Header"/>
+                                            <Label Text="{Binding Description}"
+                                                   FontSize="Small"
+                                                   TextColor="DarkSlateGray"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="2"
+                                                     Orientation="Horizontal"
+                                                     VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Amount, StringFormat='{0:C2}'}"
+                                                   FontSize="Body"
+                                                   FontAttributes="Bold"
+                                                   TextColor="Red"/>
+                                            <Image/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        <!-- ButtomSheet -->
+        <Frame HasShadow="true"
+               CornerRadius="15"
+               Padding="1,4,1,0"
+               BackgroundColor="#5D1049"
+               x:Name="bottomSheet"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                    Property=Height,Factor=.85,Constant=0}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression
+                    Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+               RelativeLayout.HeightConstraint="{ConstraintExpression
+                    Type=RelativeToParent,Property=Height,Factor=1,Constant=0}">
+            <Frame.GestureRecognizers>
+                <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+            </Frame.GestureRecognizers>
+            <StackLayout Spacing="5">
+                <BoxView HeightRequest="3"
+                         CornerRadius="2"
+                         WidthRequest="50"
+                         BackgroundColor="White"
+                         HorizontalOptions="Center"/>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="End"
+                           Padding="20,5">
+                  <Label Text="Total:"
+                         TextColor="White"
+                         VerticalTextAlignment="Center"/>
+                  <Label Text="$782.87"
+                         TextColor="White"
+                         FontSize="Subtitle"
+                         FontAttributes="Bold"/>
+                </StackLayout>
+                <CollectionView ItemsSource="{Binding GroupExpenses}"
+                                Margin="10">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Row="0"
+                                             Grid.Column="0"
+                                             Padding="0,1">
+                                    <Frame CornerRadius="5"
+                                           HasShadow="False"
+                                           BackgroundColor="#720D5D"
+                                           Padding="5">
+                                        <Grid Padding="10,5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Column="0"/>
+                                            <StackLayout Grid.Column="1"
+                                                         Orientation="Horizontal">
+                                                <Label Text="{Binding Name}"
+                                                       FontSize="Body"
+                                                       TextColor="#FCF9FC"/>
+                                                <Label Text="{Binding LastName}"
+                                                       FontSize="Body"
+                                                       TextColor="#FCF9FC"/>
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="2"
+                                                         Orientation="Horizontal"
+                                                         VerticalOptions="CenterAndExpand">
+                                                <Label Text="{Binding Amount, StringFormat='{0:C2}'}"
+                                                       FontSize="Body"
+                                                       FontAttributes="Bold"
+                                                       TextColor="White"/>
+                                                <Image/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Frame>
+         <!-- Floating button -->
+        <Frame BackgroundColor="#4F053B"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               HasShadow="False"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.75, Constant=0}"
+               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.8, Constant=0}"
+               RelativeLayout.WidthConstraint="60"
+               RelativeLayout.HeightConstraint="60">
+            <Label Text="+" TextColor="White" FontSize="Medium" Margin="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </Frame>
+     </RelativeLayout>
+</ContentPage>

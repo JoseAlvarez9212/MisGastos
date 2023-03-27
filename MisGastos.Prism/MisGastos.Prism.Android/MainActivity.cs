@@ -1,6 +1,9 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Firebase;
+using MisGastos.Prism.Droid.Services.FirebaseSerices;
+using MisGastos.Prism.Services.Firebase;
 using Prism;
 using Prism.Ioc;
 
@@ -15,6 +18,7 @@ namespace MisGastos.Prism.Droid
             base.OnCreate(savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            //FirebaseApp.InitializeApp(Application.Context);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
@@ -31,6 +35,7 @@ namespace MisGastos.Prism.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<IFirebaseAuthentication, FirebaseAuthentication>();
         }
     }
 }
