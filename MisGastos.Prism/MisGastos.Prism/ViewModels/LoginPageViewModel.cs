@@ -1,6 +1,8 @@
 ﻿using DryIoc;
-using Firebase.Auth;
-using Firebase.Auth.Providers;
+//using Firebase.Auth;
+//using Firebase.Auth.Providers;
+using MisGastos.Prism.Helpers;
+using MisGastos.Prism.Services.Firebase;
 using MisGastos.Prism.Services.Resources.Strings;
 using MisGastos.Prism.Views;
 using Newtonsoft.Json;
@@ -10,6 +12,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace MisGastos.Prism.ViewModels
@@ -18,19 +21,37 @@ namespace MisGastos.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private IStringsService _stringsService;
+        private IFirebaseAuthentication _firebaseAuthentication;
         private string _emailEntry;
         private string _passwordEntry;
+        private DelegateCommand _entryUnfocusedCommand;
         private DelegateCommand _loginButtonCommand;
+        private DelegateCommand _registerButtonCommand;
+        private bool _isVisibleErrorEmail;
+        private bool _loginButtonEnabled;
 
-        public LoginPageViewModel(INavigationService navigationService, IStringsService stringsService) : base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService,
+            IStringsService stringsService,
+            IFirebaseAuthentication firebaseAuthentication) : base(navigationService)
         {
             _navigationService = navigationService;
             _stringsService = stringsService;
-            //Title = _stringsService.LoginEmailEntryText;
+            _firebaseAuthentication = firebaseAuthentication;
+            _loginButtonEnabled = false;
+            _isVisibleErrorEmail = false;
         }
 
+        public DelegateCommand EntryUnfocusedCommand =>
+            _entryUnfocusedCommand ?? (_entryUnfocusedCommand =
+            new DelegateCommand(EntryUnfocused));
+
         public DelegateCommand LoginButtonCommand =>
-            _loginButtonCommand ?? (_loginButtonCommand = new DelegateCommand(LoginAsync));
+            _loginButtonCommand ?? (_loginButtonCommand =
+            new DelegateCommand(LoginAsync));
+
+        public DelegateCommand RegisterButtonCommand =>
+            _registerButtonCommand ?? (_registerButtonCommand =
+            new DelegateCommand(RegisterAsync));
 
         public string EmailEntry
         {
@@ -44,27 +65,50 @@ namespace MisGastos.Prism.ViewModels
             set => SetProperty(ref _passwordEntry, value);
         }
 
+        public bool IsVisibleErrorEmail
+        {
+            get => _isVisibleErrorEmail;
+            set => SetProperty(ref _isVisibleErrorEmail, value);
+        }
+
+        public bool LoginButtonEnabled
+        {
+            get => _loginButtonEnabled;
+            set => SetProperty(ref _loginButtonEnabled, value);
+        }
+
+        private void EntryUnfocused()
+        {
+            IsVisibleErrorEmail = !string.IsNullOrEmpty(EmailEntry) && !EmailEntry.IsValidEmail();
+            LoginButtonEnabled = EmailEntry.IsValidEmail() && !string.IsNullOrEmpty(PasswordEntry);
+        }
+
         private async void LoginAsync()
         {
-            /*
-            if (string.IsNullOrEmpty(EmailEntry))
+            
+            if (!EmailEntry.IsValidEmail() || string.IsNullOrEmpty(PasswordEntry))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Ingrese Email", "Aceptar");
+                await App.Current.MainPage.DisplayAlert("Error", "Ingrese un correo electrónico y contraseña válido", "Aceptar");
                 return;
             }
-
-            if (string.IsNullOrEmpty(PasswordEntry))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Ingrese Password", "Aceptar");
-                return;
-            }
-
+                    
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Error de red", "Aceptar");
+                await App.Current.MainPage.DisplayAlert("Error de red", "Revise su conección a internet", "Aceptar");
                 return;
             }
 
+            var loginResult = await _firebaseAuthentication.LoginWithEmailAndPassword(EmailEntry, PasswordEntry);
+            if (loginResult.IsSucces)
+            {
+                await _navigationService.NavigateAsync($"{nameof(HomePage)}");
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
+            }
+
+            /*
             string WebAPIkey = "AIzaSyBosudD07QmcwaOv53BsPVCN1nOXP7c01Y";
             string MyAuthDomain = "misgastos-d5408.firebaseapp.com";
 
@@ -100,7 +144,12 @@ namespace MisGastos.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
             }
             */
-            await _navigationService.NavigateAsync($"{nameof(HomePage)}");
+            //await _navigationService.NavigateAsync($"{nameof(HomePage)}");
+        }
+
+        private void RegisterAsync()
+        {
+            LoginButtonEnabled = !LoginButtonEnabled;
         }
     }
 }

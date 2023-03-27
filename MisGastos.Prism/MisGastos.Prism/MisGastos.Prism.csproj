@@ -10,7 +10,6 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="FirebaseAuthentication.net" Version="4.0.2" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
   </ItemGroup>
 
@@ -38,6 +37,7 @@
     <None Remove="Services\Resources\Strings\" />
     <None Remove="Helpers\" />
     <None Remove="Assets\strings.json" />
+    <None Remove="Services\Firebase\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
@@ -47,5 +47,6 @@
     <Folder Include="Services\Resources\" />
     <Folder Include="Services\Resources\Strings\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Services\Firebase\" />
   </ItemGroup>
 </Project>

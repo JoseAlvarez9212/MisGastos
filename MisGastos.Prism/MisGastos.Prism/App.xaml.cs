@@ -1,3 +1,4 @@
+using MisGastos.Prism.Services.Firebase;
 using MisGastos.Prism.Services.Resources.Strings;
 using MisGastos.Prism.ViewModels;
 using MisGastos.Prism.Views;
@@ -31,6 +32,7 @@ namespace MisGastos.Prism
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
             containerRegistry.Register<IStringsService, StringsService>();
+            //containerRegistry.Register<IFirebaseAuthentication, FirebaseAuthentication>();
 
             containerRegistry.RegisterForNavigation<MyNavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();

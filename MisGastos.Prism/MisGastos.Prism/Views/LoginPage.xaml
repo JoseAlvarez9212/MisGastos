@@ -7,6 +7,19 @@
              xmlns:strings="clr-namespace:MisGastos.Prism.Helpers;assembly=MisGastos.Prism"
              Title="{Binding Title}"
              BackgroundColor="#F6F2F5">
+    <!--<ContentPage.Resources>
+        <Style x:Key="PropertyTriggerStyle"
+               TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled"
+                         Value="False"
+                         TargetType="Button">
+                    <Setter Property="BackgroundColor"
+                            Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>-->
     <StackLayout>
         <RelativeLayout>
         <StackLayout RelativeLayout.HeightConstraint ="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.4,Constant=0}"
@@ -28,18 +41,42 @@
                            HorizontalTextAlignment="Center"
                            FontAttributes="Bold"
                            Padding="0,0,0,10"/>
-                    <Entry Text="{Binding EmailEntry}" 
-                           Placeholder="{strings:StringsMarkup Name=LoginEmailEntryText}">
+                    <Entry Text="{Binding EmailEntry}"
+                           Placeholder="{strings:StringsMarkup Name=LoginEmailEntryText}"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Email">
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
-                    <Entry Text="{Binding PasswordEntry}" 
+                    <Label Text="Ingrese un email valido"
+                           IsVisible="{Binding IsVisibleErrorEmail}"
+                           TextColor="Red"
+                           Padding="10,0,0,10">
+                    </Label>
+                    <Entry Text="{Binding PasswordEntry}"
+                           IsPassword="True"
                            Placeholder="{strings:StringsMarkup Name=LoginPasswordEntryText}"
-                           Margin="0,0,0,20">
+                           Margin="0,0,0,10">
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
-                    <Button Command="{Binding LoginButtonCommand}" 
+                    <Button Command="{Binding LoginButtonCommand}"
+                            IsEnabled="{Binding LoginButtonEnabled}"
                             Text="{strings:StringsMarkup Name=LoginEnterButton}"
                             BackgroundColor="#4F0A3A"
-                            BorderColor="Transparent"
                             TextColor="White">
+                        <Button.Triggers>
+                            <Trigger Property="IsEnabled"
+                                     Value="False"
+                                     TargetType="Button">
+                                <Setter Property="BackgroundColor"
+                                        Value="#F6F2F5"/>
+                            </Trigger>
+                        </Button.Triggers>
                     </Button>
                     <Button Command="{Binding RegisterButtonCommand}" 
                             Text="{strings:StringsMarkup Name=LoginRegisterButton}"
