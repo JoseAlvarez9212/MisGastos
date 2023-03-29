@@ -147,9 +147,9 @@ namespace MisGastos.Prism.ViewModels
             //await _navigationService.NavigateAsync($"{nameof(HomePage)}");
         }
 
-        private void RegisterAsync()
+        private async void RegisterAsync()
         {
-            LoginButtonEnabled = !LoginButtonEnabled;
+            await _navigationService.NavigateAsync($"{nameof(RegisterPage)}");
         }
     }
 }

@@ -1,7 +1,33 @@
 ﻿{
-  "LoginAppNameText": {
+  //---------Common---------
+  "IsEmailInvalidText": {
+    "es": "Ingrese un email valido",
+    "en": "Enter a valid email"
+  },
+  "AppNameText": {
     "es": "Mis Gastos",
-    "en": "MyExpense"
+    "en": "My Expense"
+  },
+  "ErrorEntryText": {
+    "es": "El campo {0} es obligatorio",
+    "en": "The {0} field is required"
+  },
+  "AceptButton": {
+    "es": "Aceptar",
+    "en": "Acept"
+  },
+  "ErrorTitleText": {
+    "es": "Error",
+    "en": "Error"
+  },
+  "ErrorNetworkAccessText": {
+    "es": "Revise su conección a internet.",
+    "en": "Check your internet connection."
+  },
+  //---------Login---------
+  "LoginTitlePage": {
+    "es": "Iniciar Sesión",
+    "en": "Login"
   },
   "LoginEmailEntryText": {
     "es": "Correo electrónico",
@@ -18,6 +44,35 @@
   "LoginRegisterButton": {
     "es": "Registrate",
     "en": "Register"
+  },
+  //----------RegisterPage---------
+  "RegisterTitlePage": {
+    "es": "Registro",
+    "en": "Register"
+  },
+  "RegisterNameEntryText": {
+    "es": "Nombre",
+    "en": "Name"
+  },
+  "RegisterLastNameEntryText": {
+    "es": "Apellidos",
+    "en": "Last name"
+  },
+  "RegisterEmailEntryText": {
+    "es": "Correo electrónico",
+    "en": "Email"
+  },
+  "RegisterPasswordEntryText": {
+    "es": "Contraseña",
+    "en": "Password"
+  },
+  "RegisterEnterButton": {
+    "es": "Registrar",
+    "en": "Register"
+  },
+  "RegisterBackButton": {
+    "es": "Salir",
+    "en": "Back"
   }
 }
 

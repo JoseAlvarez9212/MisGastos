@@ -21,9 +21,6 @@ namespace MisGastos.Prism
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            //var navigationPage = new NavigationPage();
-            //navigationPage.BarBackgroundColor = ColorConverters.FromHex("#5D1049");
-            //await NavigationService.NavigateAsync($"{nameof(navigationPage)}/{nameof(LoginPage)}");
             await NavigationService.NavigateAsync($"MyNavigationPage/{nameof(LoginPage)}");
         }
 
@@ -31,14 +28,14 @@ namespace MisGastos.Prism
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
-            containerRegistry.Register<IStringsService, StringsService>();
-            //containerRegistry.Register<IFirebaseAuthentication, FirebaseAuthentication>();
-
             containerRegistry.RegisterForNavigation<MyNavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<AddExpensePage, AddExpensePageViewModel>();
+
+            containerRegistry.Register<IStringsService, StringsService>();
         }
     }
 
@@ -47,7 +44,6 @@ namespace MisGastos.Prism
         public MyNavigationPage()
         {
             this.BarBackgroundColor = ColorConverters.FromHex("#4F0A3A");
-            //this.BackgroundColor = ColorConverters.FromHex("#5D1049");
             this.BarTextColor = Color.White;
         }
     }
