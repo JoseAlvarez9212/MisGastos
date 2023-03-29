@@ -8,12 +8,31 @@ namespace MisGastos.Prism.Services.Resources.Strings
     /// </summary>
 	public interface IStringsService
 	{
+        #region Common
+        string IsEmailInvalidText { get; }
+        string AppNameText { get; }
+        string ErrorEntryText { get; }
+        string AceptButton { get; }
+        string ErrorTitleText { get; }
+        string ErrorNetworkAccessText { get; }
+        #endregion
+
         #region Login
-        string LoginAppNameText { get; }
+        string LoginTitlePage { get; }
         string LoginEmailEntryText { get; }
         string LoginPasswordEntryText { get; }
         string LoginEnterButton { get; }
         string LoginRegisterButton { get; }
+        #endregion
+
+        #region Register
+        string RegisterTitlePage { get; }
+        string RegisterNameEntryText { get; }
+        string RegisterLastNameEntryText { get; }
+        string RegisterEmailEntryText { get; }
+        string RegisterPasswordEntryText { get; }
+        string RegisterEnterButton { get; }
+        string RegisterBackButton { get; }
         #endregion
 
         /// <summary>

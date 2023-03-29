@@ -3,24 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="MisGastos.Prism.Views.LoginPage"
+             x:Class="MisGastos.Prism.Views.RegisterPage"
              xmlns:strings="clr-namespace:MisGastos.Prism.Helpers;assembly=MisGastos.Prism"
              Title="{Binding Title}"
              BackgroundColor="#F6F2F5">
-    <!--<ContentPage.Resources>
-        <Style x:Key="PropertyTriggerStyle"
-               TargetType="Button">
-            <Style.Triggers>
-                <Trigger Property="IsEnabled"
-                         Value="False"
-                         TargetType="Button">
-                    <Setter Property="BackgroundColor"
-                            Value="LightGray"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </ContentPage.Resources>-->
-    <StackLayout>
+        <StackLayout>
         <RelativeLayout>
         <StackLayout RelativeLayout.HeightConstraint ="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.4,Constant=0}"
                      RelativeLayout.WidthConstraint ="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1,Constant=0}"
@@ -36,18 +23,30 @@
                    VerticalOptions="CenterAndExpand"
                    CornerRadius="10">
                 <StackLayout>
-                    <Label Text="{strings:StringsMarkup Name=LoginTitlePage}"
+                    <Label Text="{strings:StringsMarkup Name=RegisterTitlePage}"
                            FontSize="Subtitle"
                            HorizontalTextAlignment="Center"
                            FontAttributes="Bold"
                            Padding="0,0,0,10"/>
+                    <Entry Text="{Binding NameEntry}"
+                           Placeholder="{strings:StringsMarkup Name=RegisterNameEntryText}"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Text">
+                    </Entry>
+                    <Entry Text="{Binding LastNameEntry}"
+                           Placeholder="{strings:StringsMarkup Name=RegisterLastNameEntryText}"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Text">
+                    </Entry>
                     <Entry Text="{Binding EmailEntry}"
-                           Placeholder="{strings:StringsMarkup Name=LoginEmailEntryText}"
+                           Placeholder="{strings:StringsMarkup Name=RegisterEmailEntryText}"
                            ClearButtonVisibility="WhileEditing"
                            Keyboard="Email">
                         <Entry.Behaviors>
                             <prism:EventToCommandBehavior EventName="Unfocused"
                                                           Command="{Binding EntryUnfocusedCommand}"/>
+                            <prism:EventToCommandBehavior EventName="Focused"
+                                                          Command="{Binding EntryFocusedCommand}"/>
                         </Entry.Behaviors>
                     </Entry>
                     <Label Text="{strings:StringsMarkup Name=IsEmailInvalidText}"
@@ -57,16 +56,13 @@
                     </Label>
                     <Entry Text="{Binding PasswordEntry}"
                            IsPassword="True"
-                           Placeholder="{strings:StringsMarkup Name=LoginPasswordEntryText}"
+                           Placeholder="{strings:StringsMarkup Name=RegisterPasswordEntryText}"
+                           Keyboard="Default"
                            Margin="0,0,0,10">
-                        <Entry.Behaviors>
-                            <prism:EventToCommandBehavior EventName="Unfocused"
-                                                          Command="{Binding EntryUnfocusedCommand}"/>
-                        </Entry.Behaviors>
                     </Entry>
-                    <Button Command="{Binding LoginButtonCommand}"
-                            IsEnabled="{Binding LoginButtonEnabled}"
-                            Text="{strings:StringsMarkup Name=LoginEnterButton}"
+                    <Button Command="{Binding RegisterButtonCommand}"
+                            IsEnabled="{Binding RegisterButtonEnabled}"
+                            Text="{strings:StringsMarkup Name=RegisterEnterButton}"
                             BackgroundColor="#4F0A3A"
                             TextColor="White">
                         <Button.Triggers>
@@ -78,27 +74,16 @@
                             </Trigger>
                         </Button.Triggers>
                     </Button>
-                    <Button Command="{Binding RegisterButtonCommand}" 
-                            Text="{strings:StringsMarkup Name=LoginRegisterButton}"
+                    <Button Command="{Binding BackButtonCommand}" 
+                            Text="{strings:StringsMarkup Name=RegisterBackButton}"
                             BackgroundColor="Transparent"
                             TextColor="#4F0A3A"
                             BorderColor="#4F0A3A">
                     </Button>
-
-                    <StackLayout Padding="0,20,0,0"
-                                 HorizontalOptions="CenterAndExpand">
-                        <Label Text="Inicia sesion con"
-                               HorizontalTextAlignment="Center"/>
-                        <StackLayout Orientation="Horizontal"
-                                     Padding="20,0,20,0">
-                            <Button Text="F"/>
-                            <Button Text="G"/>
-                            <Button Text="A"/>
-                        </StackLayout>
-                    </StackLayout>
                 </StackLayout>
             </Frame>
         </StackLayout>
     </RelativeLayout>
     </StackLayout>
 </ContentPage>
+

@@ -18,12 +18,31 @@ namespace MisGastos.Prism.Services.Resources.Strings
         private const string FILE_NAME = "strings";
         private readonly Dictionary<string, Dictionary<string, string>> dictionary;
 
+        #region Common
+        public string IsEmailInvalidText => GetValue();
+        public string AppNameText => GetValue();
+        public string ErrorEntryText => GetValue();
+        public string AceptButton => GetValue();
+        public string ErrorTitleText => GetValue();
+        public string ErrorNetworkAccessText => GetValue();
+        #endregion
+
         #region Login
-        public string LoginAppNameText => GetValue();
+        public string LoginTitlePage => GetValue();
         public string LoginEmailEntryText => GetValue();
         public string LoginPasswordEntryText => GetValue();
         public string LoginEnterButton => GetValue();
         public string LoginRegisterButton => GetValue();
+        #endregion
+
+        #region Register
+        public string RegisterTitlePage => GetValue();
+        public string RegisterNameEntryText => GetValue();
+        public string RegisterLastNameEntryText => GetValue();
+        public string RegisterEmailEntryText => GetValue();
+        public string RegisterPasswordEntryText => GetValue();
+        public string RegisterEnterButton => GetValue();
+        public string RegisterBackButton => GetValue();
         #endregion
 
         /// <summary>
