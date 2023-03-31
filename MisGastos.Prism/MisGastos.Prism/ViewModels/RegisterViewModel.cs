@@ -138,11 +138,6 @@ namespace MisGastos.Prism.ViewModels
                     _stringsService.AceptButton);
                 return;
             }
-
-
-
-
-
         }
 
         private async Task<bool> ValidationForm()

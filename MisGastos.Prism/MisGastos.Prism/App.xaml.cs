@@ -1,3 +1,4 @@
+using MisGastos.Prism.Services.API;
 using MisGastos.Prism.Services.Firebase;
 using MisGastos.Prism.Services.Resources.Strings;
 using MisGastos.Prism.ViewModels;
@@ -36,6 +37,7 @@ namespace MisGastos.Prism
             containerRegistry.RegisterForNavigation<AddExpensePage, AddExpensePageViewModel>();
 
             containerRegistry.Register<IStringsService, StringsService>();
+            containerRegistry.Register<IExchangeRatesServices, ExchangeRatesServices>();
         }
     }
 

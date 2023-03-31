@@ -1,0 +1,15 @@
+﻿{
+  "prod": {
+    "ExchangeRatesApi": "https://api.apilayer.com/exchangerates_data/",
+    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX"
+  },
+  "dev": {
+    "ExchangeRatesApi": "https://api.apilayer.com/exchangerates_data/",
+    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX"
+  },
+  "mock": {
+    "ExchangeRatesApi": "https://api.apilayer.com/exchangerates_data/",
+    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX"
+  }
+}
+

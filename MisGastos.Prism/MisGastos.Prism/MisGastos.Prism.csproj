@@ -11,6 +11,7 @@
     <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Refit" Version="6.3.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,10 @@
     <None Remove="Helpers\" />
     <None Remove="Assets\strings.json" />
     <None Remove="Services\Firebase\" />
+    <None Remove="Services\API\" />
+    <None Remove="Models\Responses\" />
+    <None Remove="Models\Requests\" />
+    <None Remove="Models\ExchangeRate\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
@@ -48,5 +53,9 @@
     <Folder Include="Services\Resources\Strings\" />
     <Folder Include="Helpers\" />
     <Folder Include="Services\Firebase\" />
+    <Folder Include="Services\API\" />
+    <Folder Include="Models\Responses\" />
+    <Folder Include="Models\Requests\" />
+    <Folder Include="Models\ExchangeRate\" />
   </ItemGroup>
 </Project>

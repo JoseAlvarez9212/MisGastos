@@ -2,6 +2,7 @@
 //using Firebase.Auth;
 //using Firebase.Auth.Providers;
 using MisGastos.Prism.Helpers;
+using MisGastos.Prism.Services.API;
 using MisGastos.Prism.Services.Firebase;
 using MisGastos.Prism.Services.Resources.Strings;
 using MisGastos.Prism.Views;
@@ -22,6 +23,7 @@ namespace MisGastos.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private IStringsService _stringsService;
         private IFirebaseAuthentication _firebaseAuthentication;
+        private IExchangeRatesServices _exchangeRatesServices;
         private string _emailEntry;
         private string _passwordEntry;
         private DelegateCommand _entryUnfocusedCommand;
@@ -32,11 +34,13 @@ namespace MisGastos.Prism.ViewModels
 
         public LoginPageViewModel(INavigationService navigationService,
             IStringsService stringsService,
-            IFirebaseAuthentication firebaseAuthentication) : base(navigationService)
+            IFirebaseAuthentication firebaseAuthentication,
+            IExchangeRatesServices exchangeRatesServices) : base(navigationService)
         {
             _navigationService = navigationService;
             _stringsService = stringsService;
             _firebaseAuthentication = firebaseAuthentication;
+            _exchangeRatesServices = exchangeRatesServices;
             _loginButtonEnabled = false;
             _isVisibleErrorEmail = false;
         }
@@ -149,7 +153,14 @@ namespace MisGastos.Prism.ViewModels
 
         private async void RegisterAsync()
         {
-            await _navigationService.NavigateAsync($"{nameof(RegisterPage)}");
+            //await _navigationService.NavigateAsync($"{nameof(RegisterPage)}");
+            //await _exchangeRatesServices.GetExchangeRatesAsync();
+            await _exchangeRatesServices.GetExchangeRatesAsync(new Models.ExchangeRate.ExchangeRatesRequest
+            {
+                Amount = 1,
+                From = "USD",
+                To = "MXN"
+            });
         }
     }
 }
