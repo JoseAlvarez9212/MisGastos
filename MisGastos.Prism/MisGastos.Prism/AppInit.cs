@@ -1,11 +1,16 @@
-﻿using System;
-using MisGastos.Prism.Enums;
+﻿using MisGastos.Prism.Enums;
 
 namespace MisGastos.Prism
 {
+    /// <summary>
+    /// Configuration initial App.
+    /// </summary>
 	public static class AppInit
 	{
-		public static readonly EnvironmentsType ENVIRONMENT = EnvironmentsType.Dev;
+        /// <summary>
+        /// ENVIRONMENT
+        /// </summary>
+        public static readonly EnvironmentsType ENVIRONMENT = EnvironmentsType.Dev;
     }
 }
 

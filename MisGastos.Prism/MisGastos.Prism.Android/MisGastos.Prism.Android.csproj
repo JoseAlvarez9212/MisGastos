@@ -78,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <LinkDescription Include="LinkerSettings.xml" />
     <Compile Include="Services\FirebaseSerices\FirebaseAuthentication.cs" />
+    <Compile Include="Effects\EntryEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -120,6 +121,7 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\FirebaseSerices\" />
+    <Folder Include="Effects\" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />

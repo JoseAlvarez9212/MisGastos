@@ -47,6 +47,7 @@
     <None Remove="Services\Resources\ConfigApp\" />
     <None Remove="Enums\" />
     <None Remove="Resources\environments_app.json" />
+    <None Remove="Views\Effects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
@@ -63,5 +64,6 @@
     <Folder Include="Models\ExchangeRate\" />
     <Folder Include="Services\Resources\ConfigApp\" />
     <Folder Include="Enums\" />
+    <Folder Include="Views\Effects\" />
   </ItemGroup>
 </Project>

@@ -1,21 +1,22 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using MisGastos.Prism.Enums;
+﻿using System.Runtime.CompilerServices;
 
 namespace MisGastos.Prism.Services.Resources.ConfigApp
 {
-	public interface IEnvironmentService
+    /// <summary>
+    /// Contract  environment service.
+    /// </summary>
+    public interface IEnvironmentService
 	{
-        //EnvironmentsType Environment { get; }
-        //bool IsInitialized { get; }
-
         #region Properties
         string ExchangeRatesApi { get; }
         string ExchangeRatesApiKey { get; }
         #endregion
 
-        //void Init(EnvironmentsType environment);
-
+        /// <summary>
+        /// Get values for property in the dictionary
+        /// </summary>
+        /// <param name="propertyName">Property name</param>
+        /// <returns>Value</returns>
         string GetValue([CallerMemberName] string propertyName = null);
     }
 }

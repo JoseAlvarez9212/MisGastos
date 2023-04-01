@@ -32,14 +32,24 @@ namespace MisGastos.Prism.ViewModels
         private bool _isVisibleErrorEmail;
         private bool _loginButtonEnabled;
 
+        //public LoginPageViewModel(INavigationService navigationService,
+        //    IStringsService stringsService,
+        //    IFirebaseAuthentication firebaseAuthentication,
+        //    IExchangeRatesServices exchangeRatesServices) : base(navigationService)
+        //{
+        //    _navigationService = navigationService;
+        //    _stringsService = stringsService;
+        //    _firebaseAuthentication = firebaseAuthentication;
+        //    _exchangeRatesServices = exchangeRatesServices;
+        //    _loginButtonEnabled = false;
+        //    _isVisibleErrorEmail = false;
+        //}
         public LoginPageViewModel(INavigationService navigationService,
-            IStringsService stringsService,
-            IFirebaseAuthentication firebaseAuthentication,
-            IExchangeRatesServices exchangeRatesServices) : base(navigationService)
+                IStringsService stringsService,
+                IExchangeRatesServices exchangeRatesServices) : base(navigationService)
         {
             _navigationService = navigationService;
             _stringsService = stringsService;
-            _firebaseAuthentication = firebaseAuthentication;
             _exchangeRatesServices = exchangeRatesServices;
             _loginButtonEnabled = false;
             _isVisibleErrorEmail = false;
@@ -153,14 +163,13 @@ namespace MisGastos.Prism.ViewModels
 
         private async void RegisterAsync()
         {
-            //await _navigationService.NavigateAsync($"{nameof(RegisterPage)}");
-            //await _exchangeRatesServices.GetExchangeRatesAsync();
-            await _exchangeRatesServices.GetExchangeRatesAsync(new Models.ExchangeRate.ExchangeRatesRequest
-            {
-                Amount = 1,
-                From = "USD",
-                To = "MXN"
-            });
+            await _navigationService.NavigateAsync($"{nameof(RegisterPage)}");
+            //await _exchangeRatesServices.GetExchangeRatesAsync(new Models.ExchangeRate.ExchangeRatesRequest
+            //{
+            //    Amount = 1,
+            //    From = "USD",
+            //    To = "MXN"
+            //});
         }
     }
 }
