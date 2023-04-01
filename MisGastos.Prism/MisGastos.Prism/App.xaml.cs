@@ -1,5 +1,7 @@
+using System;
 using MisGastos.Prism.Services.API;
 using MisGastos.Prism.Services.Firebase;
+using MisGastos.Prism.Services.Resources.ConfigApp;
 using MisGastos.Prism.Services.Resources.Strings;
 using MisGastos.Prism.ViewModels;
 using MisGastos.Prism.Views;
@@ -36,8 +38,17 @@ namespace MisGastos.Prism
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<AddExpensePage, AddExpensePageViewModel>();
 
+            containerRegistry.Register<IEnvironmentService, EnvironmentService>();
             containerRegistry.Register<IStringsService, StringsService>();
-            containerRegistry.Register<IExchangeRatesServices, ExchangeRatesServices>();
+
+            if (AppInit.ENVIRONMENT == Enums.EnvironmentsType.Mock)
+            {
+
+            }
+            else
+            {
+                containerRegistry.Register<IExchangeRatesServices, ExchangeRatesServices>();
+            }
         }
     }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using MisGastos.Prism.Models.ExchangeRate;
-using Newtonsoft.Json;
-
-namespace MisGastos.Prism.Models.ExchangeRate
+﻿namespace MisGastos.Prism.Models.ExchangeRate
 {
     /// <summary>
     /// Exchange rates response.
@@ -34,6 +30,7 @@ namespace MisGastos.Prism.Models.ExchangeRate
         /// </summary>
         public decimal Result { get; set; }
 
+        #region Constructors
         /// <summary>
         /// Constructor when error occurs 
         /// </summary>
@@ -43,10 +40,14 @@ namespace MisGastos.Prism.Models.ExchangeRate
             Success = success;
         }
 
+        /// <summary>
+        /// Constructor default
+        /// </summary>
         public ExchangeRatesResponse()
         {
 
         }
-	}
+        #endregion
+    }
 }
 

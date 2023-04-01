@@ -1,5 +1,4 @@
-﻿using System;
-namespace MisGastos.Prism.Models.ExchangeRate
+﻿namespace MisGastos.Prism.Models.ExchangeRate
 {
     /// <summary>
     /// Exchange rates info.

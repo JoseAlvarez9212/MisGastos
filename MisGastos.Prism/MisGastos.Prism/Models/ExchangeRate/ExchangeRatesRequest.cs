@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace MisGastos.Prism.Models.ExchangeRate
+﻿namespace MisGastos.Prism.Models.ExchangeRate
 {
     /// <summary>
     /// Convert from one currency to another.

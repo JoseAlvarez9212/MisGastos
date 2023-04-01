@@ -1,8 +1,6 @@
-﻿using System;
-using Refit;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MisGastos.Prism.Models.ExchangeRate;
+using Refit;
 
 namespace MisGastos.Prism.Services.API
 {

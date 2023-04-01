@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\strings.json" />
+    <EmbeddedResource Include="Resources\environments_app.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\AddExpensePage.xaml">
@@ -43,6 +44,9 @@
     <None Remove="Models\Responses\" />
     <None Remove="Models\Requests\" />
     <None Remove="Models\ExchangeRate\" />
+    <None Remove="Services\Resources\ConfigApp\" />
+    <None Remove="Enums\" />
+    <None Remove="Resources\environments_app.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
@@ -57,5 +61,7 @@
     <Folder Include="Models\Responses\" />
     <Folder Include="Models\Requests\" />
     <Folder Include="Models\ExchangeRate\" />
+    <Folder Include="Services\Resources\ConfigApp\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

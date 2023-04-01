@@ -50,6 +50,11 @@ namespace MisGastos.Prism.Helpers
             }
             return result;
         }
+
+        public static string ToLowerSafely(this string str)
+        {
+            return string.IsNullOrEmpty(str) ? string.Empty : str.ToLowerInvariant();
+        }
     }
 }
 
