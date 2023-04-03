@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 //using Firebase.Auth;
 //using Firebase.Auth.Providers;
 using Firebase.Database;
+using MisGastos.Prism.Models.Dtos;
 using MisGastos.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Navigation;
 
 namespace MisGastos.Prism.Services.Firebase
@@ -57,6 +61,25 @@ namespace MisGastos.Prism.Services.Firebase
                 await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
             }
         }*/
+
+        public string ApiFirebase = "";
+        private string KeyAplication = "";
+
+        //public async Task<bool> UserRegister(UserDto user)
+        //{
+        //    try
+        //    {
+        //        HttpClient client = new HttpClient();
+        //        var body = JsonConvert.SerializeObject(user);
+        //        var content = new StringContent(body, Encoding.UTF8, "application/json");
+        //        var apiFormat = $"{}{}.json?auth={}";
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }
 

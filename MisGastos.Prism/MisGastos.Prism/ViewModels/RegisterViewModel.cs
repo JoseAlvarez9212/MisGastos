@@ -47,7 +47,6 @@ namespace MisGastos.Prism.ViewModels
         /// </summary>
         private void InitializeComponent()
         {
-            //Title = _stringsService.RegisterTitlePage;
             _registerButtonEnabled = false;
             _isVisibleErrorEmail = false;
         }
@@ -109,10 +108,10 @@ namespace MisGastos.Prism.ViewModels
         /// <summary>
         /// email validation Unfocused
         /// </summary>
-        private void EntryUnfocused()
+        private async void EntryUnfocused()
         {
             IsVisibleErrorEmail = !string.IsNullOrEmpty(EmailEntry) && !EmailEntry.IsValidEmail();
-            _registerButtonEnabled = EmailEntry.IsValidEmail() && !string.IsNullOrEmpty(PasswordEntry);
+            RegisterButtonEnabled = await ValidationForm(false) && EmailEntry.IsValidEmail();
         }
 
         /// <summary>
@@ -123,9 +122,13 @@ namespace MisGastos.Prism.ViewModels
             IsVisibleErrorEmail = false;
         }
 
+        //TODO: Agregar textos al StringService - agregar pantalla de success
+        /// <summary>
+        /// Register user async.
+        /// </summary>
         public async void RegisterAsync()
         {
-            if (await ValidationForm())
+            if (await ValidationForm(true))
             {
                 return;
             }
@@ -139,20 +142,35 @@ namespace MisGastos.Prism.ViewModels
                 return;
             }
 
-
-
-
-
+            var response = await _firebaseAuthentication.RegisterWithEmailAndPassword(EmailEntry, PasswordEntry);
+            if (response.IsSucces)
+            {
+                await App.Current.MainPage.DisplayAlert("Bienvenido",
+                   "Usuario registrado correctamente.",
+                   _stringsService.AceptButton);
+                await NavigationService.GoBackAsync();
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(_stringsService.ErrorTitleText,
+                   response.Exception.Message,
+                   _stringsService.AceptButton);
+            }
         }
 
-        private async Task<bool> ValidationForm()
+        /// <summary>
+        /// Validation entries
+        /// </summary>
+        /// <param name="showDisplayAlert">Show DisplayAlert error</param>
+        /// <returns>is valid form</returns>
+        private async Task<bool> ValidationForm(bool showDisplayAlert)
         {
             var isValid = new List<Func<Task<bool>>>
             {
-                async () => await ValidationEntry(NameEntry, _stringsService.RegisterNameEntryText),
-                async () => await ValidationEntry(LastNameEntry, _stringsService.RegisterLastNameEntryText),
-                async () => await ValidationEntry(EmailEntry, _stringsService.RegisterEmailEntryText),
-                async () => await ValidationEntry(PasswordEntry, _stringsService.RegisterPasswordEntryText),
+               async () => await ValidationEntry(NameEntry, _stringsService.RegisterNameEntryText, showDisplayAlert),
+               async () => await ValidationEntry(LastNameEntry, _stringsService.RegisterLastNameEntryText, showDisplayAlert),
+               async () => await ValidationEntry(EmailEntry, _stringsService.RegisterEmailEntryText, showDisplayAlert),
+               async () => await ValidationEntry(PasswordEntry, _stringsService.RegisterPasswordEntryText, showDisplayAlert),
             };
             foreach (var item in isValid)
             {
@@ -164,16 +182,27 @@ namespace MisGastos.Prism.ViewModels
             return true;
         }
 
-        private async Task<bool> ValidationEntry(string entryText, string entryName)
+        /// <summary>
+        /// Validation entry is empty.
+        /// </summary>
+        /// <param name="entry">Entry</param>
+        /// <param name="entryName">Entry name.</param>
+        /// <param name="showDisplayAlert">Show DisplayAlert error</param>
+        /// <returns>isValid</returns>
+        private async Task<bool> ValidationEntry(string entry, string entryName, bool showDisplayAlert)
         {
-            if (!string.IsNullOrEmpty(entryText))
+            if (!string.IsNullOrEmpty(entry))
             {
                 return true;
             }
-            var errorText = string.Format(_stringsService.ErrorEntryText, entryName ?? string.Empty);
-            await App.Current.MainPage.DisplayAlert(_stringsService.ErrorTitleText,
-                errorText,
-                _stringsService.AceptButton);
+
+            if (showDisplayAlert)
+            {
+                var errorText = string.Format(_stringsService.ErrorEntryText, entryName ?? string.Empty);
+                await App.Current.MainPage.DisplayAlert(_stringsService.ErrorTitleText,
+                    errorText,
+                    _stringsService.AceptButton);
+            }
             return false;
         }
 

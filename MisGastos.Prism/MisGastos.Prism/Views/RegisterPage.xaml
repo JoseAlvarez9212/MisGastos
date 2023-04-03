@@ -5,6 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MisGastos.Prism.Views.RegisterPage"
              xmlns:strings="clr-namespace:MisGastos.Prism.Helpers;assembly=MisGastos.Prism"
+             xmlns:localEffects="clr-namespace:MisGastos.Prism.Views.Effects"
              Title="{Binding Title}"
              BackgroundColor="#F6F2F5">
         <StackLayout>
@@ -32,16 +33,33 @@
                            Placeholder="{strings:StringsMarkup Name=RegisterNameEntryText}"
                            ClearButtonVisibility="WhileEditing"
                            Keyboard="Text">
+                        <Entry.Effects>
+                            <localEffects:EntryEffect/>
+                        </Entry.Effects>
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
                     <Entry Text="{Binding LastNameEntry}"
                            Placeholder="{strings:StringsMarkup Name=RegisterLastNameEntryText}"
                            ClearButtonVisibility="WhileEditing"
                            Keyboard="Text">
+                        <Entry.Effects>
+                            <localEffects:EntryEffect/>
+                        </Entry.Effects>
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
                     <Entry Text="{Binding EmailEntry}"
                            Placeholder="{strings:StringsMarkup Name=RegisterEmailEntryText}"
                            ClearButtonVisibility="WhileEditing"
                            Keyboard="Email">
+                        <Entry.Effects>
+                            <localEffects:EntryEffect/>
+                        </Entry.Effects>
                         <Entry.Behaviors>
                             <prism:EventToCommandBehavior EventName="Unfocused"
                                                           Command="{Binding EntryUnfocusedCommand}"/>
@@ -59,6 +77,13 @@
                            Placeholder="{strings:StringsMarkup Name=RegisterPasswordEntryText}"
                            Keyboard="Default"
                            Margin="0,0,0,10">
+                        <Entry.Effects>
+                            <localEffects:EntryEffect/>
+                        </Entry.Effects>
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
                     <Button Command="{Binding RegisterButtonCommand}"
                             IsEnabled="{Binding RegisterButtonEnabled}"
