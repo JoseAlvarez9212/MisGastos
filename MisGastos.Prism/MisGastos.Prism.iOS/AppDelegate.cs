@@ -1,4 +1,6 @@
 ﻿using Foundation;
+using MisGastos.Prism.iOS.Services.FirebaseServices;
+using MisGastos.Prism.Services.Firebase;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -33,6 +35,7 @@ namespace MisGastos.Prism.iOS
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<IFirebaseAuthentication, FirebaseAuthentication>();
         }
     }
 }
