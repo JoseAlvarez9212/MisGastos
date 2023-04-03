@@ -1,4 +1,6 @@
 ﻿using System;
+using DryIoc;
+
 namespace MisGastos.Prism.Models
 {
     public class FirebaseResponse
@@ -9,9 +11,19 @@ namespace MisGastos.Prism.Models
 
         public string Token { get; set; }
 
-        public Exception Error { get; set; }
+        public Exception Exception { get; set; }
 
         public string ProviderType { get; set; }
+
+        public FirebaseResponse()
+        {
+
+        }
+
+        public FirebaseResponse(Exception exception)
+        {
+            Exception = exception;
+        }
     }
 
     public class User

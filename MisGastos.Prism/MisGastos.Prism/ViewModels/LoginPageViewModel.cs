@@ -32,28 +32,28 @@ namespace MisGastos.Prism.ViewModels
         private bool _isVisibleErrorEmail;
         private bool _loginButtonEnabled;
 
-        //public LoginPageViewModel(INavigationService navigationService,
-        //    IStringsService stringsService,
-        //    IFirebaseAuthentication firebaseAuthentication,
-        //    IExchangeRatesServices exchangeRatesServices) : base(navigationService)
-        //{
-        //    _navigationService = navigationService;
-        //    _stringsService = stringsService;
-        //    _firebaseAuthentication = firebaseAuthentication;
-        //    _exchangeRatesServices = exchangeRatesServices;
-        //    _loginButtonEnabled = false;
-        //    _isVisibleErrorEmail = false;
-        //}
         public LoginPageViewModel(INavigationService navigationService,
-                IStringsService stringsService,
-                IExchangeRatesServices exchangeRatesServices) : base(navigationService)
+            IStringsService stringsService,
+            IFirebaseAuthentication firebaseAuthentication,
+            IExchangeRatesServices exchangeRatesServices) : base(navigationService)
         {
             _navigationService = navigationService;
             _stringsService = stringsService;
+            _firebaseAuthentication = firebaseAuthentication;
             _exchangeRatesServices = exchangeRatesServices;
             _loginButtonEnabled = false;
             _isVisibleErrorEmail = false;
         }
+        //public LoginPageViewModel(INavigationService navigationService,
+        //        IStringsService stringsService,
+        //        IExchangeRatesServices exchangeRatesServices) : base(navigationService)
+        //{
+        //    _navigationService = navigationService;
+        //    _stringsService = stringsService;
+        //    _exchangeRatesServices = exchangeRatesServices;
+        //    _loginButtonEnabled = false;
+        //    _isVisibleErrorEmail = false;
+        //}
 
         public DelegateCommand EntryUnfocusedCommand =>
             _entryUnfocusedCommand ?? (_entryUnfocusedCommand =
@@ -112,58 +112,22 @@ namespace MisGastos.Prism.ViewModels
                 return;
             }
 
-            var loginResult = await _firebaseAuthentication.LoginWithEmailAndPassword(EmailEntry, PasswordEntry);
-            if (loginResult.IsSucces)
+            var response = await _firebaseAuthentication.LoginWithEmailAndPassword(EmailEntry, PasswordEntry);
+            if (response.IsSucces)
             {
-                await _navigationService.NavigateAsync($"{nameof(HomePage)}");
+                await _navigationService.NavigateAsync($"{nameof(HomePage)}",animated:true);
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
+                await App.Current.MainPage.DisplayAlert(_stringsService.ErrorTitleText,
+                   response.Exception.Message,
+                   _stringsService.AceptButton);
             }
-
-            /*
-            string WebAPIkey = "AIzaSyBosudD07QmcwaOv53BsPVCN1nOXP7c01Y";
-            string MyAuthDomain = "misgastos-d5408.firebaseapp.com";
-
-            var config = new FirebaseAuthConfig
-            {
-                ApiKey = WebAPIkey,
-                AuthDomain = MyAuthDomain,
-                Providers = new FirebaseAuthProvider[]
-                {
-                    //new GoogleProvider(),
-                    //new FacebookProvider(),
-                    //new TwitterProvider(),
-                    //new GithubProvider(),
-                    //new MicrosoftProvider(),
-                    new EmailProvider()
-                }
-            };
-
-            var authProvider = new FirebaseAuthClient(config);
-            try
-            {
-                var auth = await authProvider.SignInWithEmailAndPasswordAsync(EmailEntry.ToString(), PasswordEntry.ToString());
-                //var content = await auth.User.GetIdTokenAsync();
-                //var serializedcontnet = JsonConvert.SerializeObject(content);
-
-                //Preferences.Set("MyFirebaseRefreshToken", serializedcontnet);
-
-                //Puede navegar al tener autorizacion
-                await _navigationService.NavigateAsync($"NavigationPage/{nameof(HomePage)}");
-            }
-            catch (Exception ex)
-            {
-                await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
-            }
-            */
-            //await _navigationService.NavigateAsync($"{nameof(HomePage)}");
         }
 
         private async void RegisterAsync()
         {
-            await _navigationService.NavigateAsync($"{nameof(RegisterPage)}");
+            await _navigationService.NavigateAsync($"{nameof(RegisterPage)}", animated:false);
             //await _exchangeRatesServices.GetExchangeRatesAsync(new Models.ExchangeRate.ExchangeRatesRequest
             //{
             //    Amount = 1,

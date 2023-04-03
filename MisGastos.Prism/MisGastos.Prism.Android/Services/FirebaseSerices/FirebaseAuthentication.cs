@@ -1,16 +1,58 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MisGastos.Prism.Services.Firebase;
+using Android.Gms.Tasks;
 using Firebase.Auth;
+using Java.Interop;
 using MisGastos.Prism.Models;
+using MisGastos.Prism.Services.Firebase;
 
 namespace MisGastos.Prism.Droid.Services.FirebaseSerices
 {
-	public class FirebaseAuthentication : IFirebaseAuthentication
+    public class FirebaseAuthentication : IFirebaseAuthentication
     {
+        private readonly FirebaseAuth _FirebaseAuth;
+
+        public FirebaseAuthentication()
+        {
+            _FirebaseAuth = FirebaseAuth.Instance;
+        }
+
+        public async Task<FirebaseResponse> RegisterWithEmailAndPassword(string email, string password)
+        {
+            try
+            {
+                var auth = await _FirebaseAuth.CreateUserWithEmailAndPasswordAsync(email, password);
+                return FirebaseResult(auth);
+            }
+            catch (FirebaseAuthException ex)
+            {
+                return new FirebaseResponse(ex);
+            }
+            catch (Exception ex)
+            {
+                return new FirebaseResponse(ex);
+            }
+        }
+
+        public bool UpdateProfile()
+        {
+            try
+            {
+                UserProfileChangeRequest userProfile = new UserProfileChangeRequest.Builder()
+                    .SetDisplayName("")
+                    .Build();
+                var result = Firebase.Auth.FirebaseAuth.Instance.CurrentUser.UpdateProfile(userProfile);
+                return result.IsSuccessful;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool IsSignIn()
         {
-            var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser;
+            var user = _FirebaseAuth.CurrentUser;
             return user != null;
         }
 
@@ -18,29 +60,16 @@ namespace MisGastos.Prism.Droid.Services.FirebaseSerices
         {
             try
             {
-                var auth = await Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
-                var firebaseResponse = new FirebaseResponse
-                {
-                    IsSucces = auth.User != null,
-                    User = new User
-                    {
-                        Email = auth.User.Email,
-                        UrlPhoto = auth.User.PhotoUrl?.ToString(),
-                        UserName = auth.AdditionalUserInfo?.Username,
-                        Uid = auth.User.Uid
-                    },
-                    Token = auth.User.GetIdToken(false).Result.ToString(),
-                    ProviderType = auth.AdditionalUserInfo?.ProviderId
-                };
-                return firebaseResponse;
+                var auth = await _FirebaseAuth.SignInWithEmailAndPasswordAsync(email, password);
+                return FirebaseResult(auth);
             }
             catch (FirebaseAuthException ex)
             {
-                return new FirebaseResponse { Error = ex };
+                return new FirebaseResponse(ex);
             }
             catch (Exception ex)
             {
-                return new FirebaseResponse { Error = ex };
+                return new FirebaseResponse(ex);
             }
         }
 
@@ -48,13 +77,31 @@ namespace MisGastos.Prism.Droid.Services.FirebaseSerices
         {
             try
             {
-                Firebase.Auth.FirebaseAuth.Instance.SignOut();
+                _FirebaseAuth.SignOut();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
+        }
+
+        private FirebaseResponse FirebaseResult(IAuthResult authResult)
+        {
+            var firebaseResponse = new FirebaseResponse
+            {
+                IsSucces = authResult.User != null,
+                User = new User
+                {
+                    Email = authResult.User.Email,
+                    UrlPhoto = authResult.User.PhotoUrl?.ToString(),
+                    UserName = authResult.AdditionalUserInfo?.Username,
+                    Uid = authResult.User.Uid
+                },
+                Token = authResult.User.GetIdToken(false).Result.ToString(),
+                ProviderType = authResult.AdditionalUserInfo?.ProviderId
+            };
+            return firebaseResponse;
         }
     }
 }

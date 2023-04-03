@@ -36,6 +36,10 @@
                         <Entry.Effects>
                             <localEffects:EntryEffect/>
                         </Entry.Effects>
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
                     <Entry Text="{Binding LastNameEntry}"
                            Placeholder="{strings:StringsMarkup Name=RegisterLastNameEntryText}"
@@ -44,6 +48,10 @@
                         <Entry.Effects>
                             <localEffects:EntryEffect/>
                         </Entry.Effects>
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
                     <Entry Text="{Binding EmailEntry}"
                            Placeholder="{strings:StringsMarkup Name=RegisterEmailEntryText}"
@@ -72,6 +80,10 @@
                         <Entry.Effects>
                             <localEffects:EntryEffect/>
                         </Entry.Effects>
+                        <Entry.Behaviors>
+                            <prism:EventToCommandBehavior EventName="Unfocused"
+                                                          Command="{Binding EntryUnfocusedCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
                     <Button Command="{Binding RegisterButtonCommand}"
                             IsEnabled="{Binding RegisterButtonEnabled}"
