@@ -41,19 +41,9 @@ namespace MisGastos.Prism.ViewModels
             _stringsService = stringsService;
             _firebaseAuthentication = firebaseAuthentication;
             _exchangeRatesServices = exchangeRatesServices;
-            _loginButtonEnabled = false;
+            _loginButtonEnabled = true;
             _isVisibleErrorEmail = false;
         }
-        //public LoginPageViewModel(INavigationService navigationService,
-        //        IStringsService stringsService,
-        //        IExchangeRatesServices exchangeRatesServices) : base(navigationService)
-        //{
-        //    _navigationService = navigationService;
-        //    _stringsService = stringsService;
-        //    _exchangeRatesServices = exchangeRatesServices;
-        //    _loginButtonEnabled = false;
-        //    _isVisibleErrorEmail = false;
-        //}
 
         public DelegateCommand EntryUnfocusedCommand =>
             _entryUnfocusedCommand ?? (_entryUnfocusedCommand =
@@ -99,7 +89,9 @@ namespace MisGastos.Prism.ViewModels
 
         private async void LoginAsync()
         {
-            
+            await _navigationService.NavigateAsync($"{nameof(TeamsPage)}", animated: true);
+
+            /*   
             if (!EmailEntry.IsValidEmail() || string.IsNullOrEmpty(PasswordEntry))
             {
                 await App.Current.MainPage.DisplayAlert("Error", "Ingrese un correo electrónico y contraseña válido", "Aceptar");
@@ -123,6 +115,7 @@ namespace MisGastos.Prism.ViewModels
                    response.Exception.Message,
                    _stringsService.AceptButton);
             }
+            */
         }
 
         private async void RegisterAsync()

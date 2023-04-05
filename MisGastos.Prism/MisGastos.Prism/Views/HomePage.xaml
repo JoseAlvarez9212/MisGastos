@@ -92,7 +92,7 @@
         </StackLayout>
         <!-- ButtomSheet -->
         <Frame HasShadow="true"
-               CornerRadius="15"
+               CornerRadius="5"
                Padding="1,4,1,0"
                BackgroundColor="#5D1049"
                x:Name="bottomSheet"

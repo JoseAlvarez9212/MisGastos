@@ -18,6 +18,8 @@ namespace MisGastos.Prism.Services.Resources.ConfigApp
         public string ExchangeRatesApi => GetValue();
 
         public string ExchangeRatesApiKey => GetValue();
+
+        public string FirebaseProjectID => GetValue();
         #endregion
 
         /// <summary>

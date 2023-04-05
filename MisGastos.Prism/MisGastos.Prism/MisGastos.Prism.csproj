@@ -48,6 +48,7 @@
     <None Remove="Enums\" />
     <None Remove="Resources\environments_app.json" />
     <None Remove="Views\Effects\" />
+    <None Remove="Models\FirebaseDB\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
@@ -65,5 +66,6 @@
     <Folder Include="Services\Resources\ConfigApp\" />
     <Folder Include="Enums\" />
     <Folder Include="Views\Effects\" />
+    <Folder Include="Models\FirebaseDB\" />
   </ItemGroup>
 </Project>

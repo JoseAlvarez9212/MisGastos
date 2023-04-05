@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MisGastos.Prism.Views.TeamsPage"
+    Title="{Binding Title}"
+    BackgroundColor="#F6F2F5">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Estas muy solo por acá, crea equipos de gastos para continuar."
+                   IsVisible="{Binding IsVisibleTextEmptyList}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Italic"
+                   FontSize="Medium"/>
+
+            <CollectionView ItemsSource="{Binding Teams}"
+                            IsVisible="{Binding IsVisibleTeamsCV}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0"
+                                         Grid.Column="0"
+                                         Padding="0,1">
+                                <Frame CornerRadius="5"
+                                       HasShadow="False"
+                                       BackgroundColor="White"
+                                       Padding="5">
+                                    <Grid Padding="10,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0"/>
+                                        <StackLayout Grid.Column="1"
+                                                     VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Name}"
+                                                   FontSize="Header"/>
+                                            <Label Text="ver integrantes"
+                                                   FontSize="Small"
+                                                   TextColor="DarkSlateGray"/>
+                                        </StackLayout>
+                                        <Image Grid.Column="2"
+                                               VerticalOptions="CenterAndExpand">
+                                        </Image>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Command="{Binding ContinueButtonCommand}"
+                    IsEnabled="{Binding ContinueButtonEnabled}"
+                    Text="Agregar"
+                    BackgroundColor="#4F0A3A"
+                    TextColor="White"
+                    VerticalOptions="End">
+                <Button.Triggers>
+                    <Trigger Property="IsEnabled"
+                                Value="False"
+                                TargetType="Button">
+                        <Setter Property="BackgroundColor"
+                                Value="#F6F2F5"/>
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

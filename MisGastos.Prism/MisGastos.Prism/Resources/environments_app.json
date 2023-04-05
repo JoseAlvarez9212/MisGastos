@@ -1,15 +1,18 @@
 ﻿{
   "prod": {
     "ExchangeRatesApi": "https://api.apilayer.com/exchangerates_data/",
-    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX"
+    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX",
+    "FirebaseProjectID": "https://misgastos-d5408-default-rtdb.firebaseio.com/"
   },
   "dev": {
     "ExchangeRatesApi": "https://api.apilayer.com/exchangerates_data/",
-    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX"
+    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX",
+    "FirebaseProjectID": "https://misgastos-d5408-default-rtdb.firebaseio.com/"
   },
   "mock": {
     "ExchangeRatesApi": "https://api.apilayer.com/exchangerates_data/",
-    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX"
+    "ExchangeRatesApiKey": "gG9OSqA1CeuJuVsmqCjgxlfzlPAgT5HX",
+    "FirebaseProjectID": "https://misgastos-d5408-default-rtdb.firebaseio.com/"
   }
 }
 

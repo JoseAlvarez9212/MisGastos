@@ -25,6 +25,7 @@ namespace MisGastos.Prism
         {
             InitializeComponent();
             await NavigationService.NavigateAsync($"MyNavigationPage/{nameof(LoginPage)}");
+            //await NavigationService.NavigateAsync($"{nameof(TeamsPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,18 +33,20 @@ namespace MisGastos.Prism
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
             containerRegistry.RegisterForNavigation<MyNavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<TeamsPage, TeamsPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<AddExpensePage, AddExpensePageViewModel>();
 
             containerRegistry.Register<IEnvironmentService, EnvironmentService>();
             containerRegistry.Register<IStringsService, StringsService>();
+            containerRegistry.Register<IFirebaseDataBaseService, FirebaseDataBaseService>();
 
             if (AppInit.ENVIRONMENT == Enums.EnvironmentsType.Mock)
             {
-
+                //TODO: CREAR SERVICIOS MOCK
             }
             else
             {
