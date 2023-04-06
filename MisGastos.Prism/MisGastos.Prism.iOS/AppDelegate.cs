@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
+using Foundation;
 using MisGastos.Prism.iOS.Services.FirebaseServices;
 using MisGastos.Prism.Services.Firebase;
 using Prism;
@@ -24,6 +26,8 @@ namespace MisGastos.Prism.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            CachedImageRenderer.Init();
+            var ignore = typeof(SvgCachedImage);
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

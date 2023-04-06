@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 using Firebase;
 using MisGastos.Prism.Droid.Services.FirebaseSerices;
 using MisGastos.Prism.Services.Firebase;
@@ -19,6 +21,8 @@ namespace MisGastos.Prism.Droid
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             //FirebaseApp.InitializeApp(Application.Context);
+            CachedImageRenderer.Init(true);
+            var ignore = typeof(SvgCachedImage);
             LoadApplication(new App(new AndroidInitializer()));
         }
 

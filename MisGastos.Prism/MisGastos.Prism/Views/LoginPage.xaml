@@ -6,6 +6,7 @@
              x:Class="MisGastos.Prism.Views.LoginPage"
              xmlns:strings="clr-namespace:MisGastos.Prism.Helpers;assembly=MisGastos.Prism"
              xmlns:localEffects="clr-namespace:MisGastos.Prism.Views.Effects"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              Title="{Binding Title}"
              BackgroundColor="#F6F2F5">
     <StackLayout>
@@ -14,8 +15,9 @@
                      RelativeLayout.WidthConstraint ="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1,Constant=0}"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
                      BackgroundColor="#4F0A3A">
-            <Label Text="Hola" TextColor="White"/>
-
+            <ffimageloadingsvg:SvgCachedImage HeightRequest="150"
+                                              VerticalOptions="StartAndExpand"
+                                    Source="resource://MisGastos.Prism.Resources.icon.ic_app_name.svg"/>
         </StackLayout>
         <StackLayout RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.2, Constant=0}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
@@ -81,15 +83,25 @@
                             BorderColor="#4F0A3A">
                     </Button>
 
-                    <StackLayout Padding="0,20,0,0"
-                                 HorizontalOptions="CenterAndExpand">
+                    <StackLayout Padding="0,0,0,0">
+                        <Label Text=" - o -"
+                               HorizontalTextAlignment="Center"/>
                         <Label Text="Inicia sesion con"
                                HorizontalTextAlignment="Center"/>
                         <StackLayout Orientation="Horizontal"
-                                     Padding="20,0,20,0">
-                            <Button Text="F"/>
-                            <Button Text="G"/>
-                            <Button Text="A"/>
+                                     HorizontalOptions="CenterAndExpand">
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="50"
+                                                              HeightRequest="50"
+                                                              Margin="10"
+                                                              Source="resource://MisGastos.Prism.Resources.icon.ic_facebook.svg"/>
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="50"
+                                                              HeightRequest="50"
+                                                              Margin="10"
+                                                              Source="resource://MisGastos.Prism.Resources.icon.ic_google.svg"/>
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="50"
+                                                              HeightRequest="50"
+                                                              Margin="10"
+                                                              Source="resource://MisGastos.Prism.Resources.icon.ic_apple.svg"/>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

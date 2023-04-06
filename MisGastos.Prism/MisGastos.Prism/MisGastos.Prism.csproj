@@ -17,6 +17,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\strings.json" />
     <EmbeddedResource Include="Resources\environments_app.json" />
+    <EmbeddedResource Include="Resources\icon\ic_facebook.svg" />
+    <EmbeddedResource Include="Resources\icon\ic_apple.svg" />
+    <EmbeddedResource Include="Resources\icon\ic_google.svg" />
+    <EmbeddedResource Include="Resources\icon\ic_app_name.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\AddExpensePage.xaml">
@@ -49,6 +53,11 @@
     <None Remove="Resources\environments_app.json" />
     <None Remove="Views\Effects\" />
     <None Remove="Models\FirebaseDB\" />
+    <None Remove="Resources\icon\" />
+    <None Remove="Resources\icon\ic_facebook.svg" />
+    <None Remove="Resources\icon\ic_apple.svg" />
+    <None Remove="Resources\icon\ic_google.svg" />
+    <None Remove="Resources\icon\ic_app_name.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
@@ -67,5 +76,6 @@
     <Folder Include="Enums\" />
     <Folder Include="Views\Effects\" />
     <Folder Include="Models\FirebaseDB\" />
+    <Folder Include="Resources\icon\" />
   </ItemGroup>
 </Project>
