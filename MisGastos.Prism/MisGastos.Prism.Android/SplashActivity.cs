@@ -4,9 +4,9 @@ using AndroidX.AppCompat.App;
 
 namespace MisGastos.Prism.Droid
 {
-    [Activity(Theme = "@style/MainTheme.Splash",
-              MainLauncher = true,
-              NoHistory = true)]
+    //[Activity(Theme = "@style/MainTheme.Splash",
+    //          MainLauncher = true,
+    //          NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
         // Launches the startup task
