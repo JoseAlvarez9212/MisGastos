@@ -106,6 +106,10 @@
     <LinkDescription Include="LinkerSettings.xml" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FirebaseServices\FirebaseAuthentication.cs" />
+    <Compile Include="ViewControllers\LaunchScreenViewController.cs" />
+    <Compile Include="ViewControllers\LaunchScreenViewController.designer.cs">
+      <DependentUpon>LaunchScreenViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
@@ -188,7 +192,9 @@
     <BundleResource Include="Resources\LaunchIcon%401x.png" />
     <BundleResource Include="Resources\LaunchIcon%402x.png" />
     <BundleResource Include="Resources\LaunchIcon%403x.png" />
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\lottie_loading.json" />
+    <InterfaceDefinition Include="Views\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\ic_app_name.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -206,6 +212,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
+      <Version>4.1.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MisGastos.Prism\MisGastos.Prism.csproj">
@@ -216,6 +225,8 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\FirebaseServices\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -2,6 +2,7 @@
 using FFImageLoading.Svg.Forms;
 using Foundation;
 using MisGastos.Prism.iOS.Services.FirebaseServices;
+using MisGastos.Prism.iOS.ViewControllers;
 using MisGastos.Prism.Services.Firebase;
 using Prism;
 using Prism.Ioc;
@@ -25,12 +26,23 @@ namespace MisGastos.Prism.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            CachedImageRenderer.Init();
-            var ignore = typeof(SvgCachedImage);
-            LoadApplication(new App(new iOSInitializer()));
+            if (Window is null)
+            {
+                Window = new UIWindow(frame:UIScreen.MainScreen.Bounds);
+                var initViewController = new LaunchScreenViewController(options);
+                Window.RootViewController = initViewController;
+                Window.MakeKeyAndVisible();
+                return true;
+            }
+            else
+            {
+                global::Xamarin.Forms.Forms.Init();
+                CachedImageRenderer.Init();
+                var ignore = typeof(SvgCachedImage);
+                LoadApplication(new App(new iOSInitializer()));
 
-            return base.FinishedLaunching(app, options);
+                return base.FinishedLaunching(app, options);
+            }
         }
     }
 
