@@ -1,5 +1,6 @@
 using System;
 using MisGastos.Prism.Services.API;
+using MisGastos.Prism.Services.AppView;
 using MisGastos.Prism.Services.Firebase;
 using MisGastos.Prism.Services.Resources.ConfigApp;
 using MisGastos.Prism.Services.Resources.Strings;
@@ -41,6 +42,7 @@ namespace MisGastos.Prism
             containerRegistry.RegisterForNavigation<AddExpensePage, AddExpensePageViewModel>();
 
             containerRegistry.Register<IEnvironmentService, EnvironmentService>();
+            containerRegistry.Register<IAppViewService, AppViewService>();
             containerRegistry.Register<IStringsService, StringsService>();
             containerRegistry.Register<IFirebaseDataBaseService, FirebaseDataBaseService>();
 

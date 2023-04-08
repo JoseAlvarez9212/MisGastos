@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MisGastos.Prism.Helpers;
+using MisGastos.Prism.Services.AppView;
 using MisGastos.Prism.Services.Firebase;
 using MisGastos.Prism.Services.Resources.Strings;
 using Prism.Commands;
@@ -17,6 +18,7 @@ namespace MisGastos.Prism.ViewModels
 	public class RegisterViewModel : ViewModelBase
 	{
         private readonly INavigationService _navigationService;
+        private IAppViewService _appViewService;
         private IStringsService _stringsService;
         private IFirebaseAuthentication _firebaseAuthentication;
         private string _nameEntry;
@@ -31,11 +33,13 @@ namespace MisGastos.Prism.ViewModels
         private bool _registerButtonEnabled;
 
         public RegisterViewModel(INavigationService navigationService,
-			IStringsService stringsService,
+            IAppViewService appViewService,
+            IStringsService stringsService,
 			IFirebaseAuthentication firebaseAuthentication) :
 			base(navigationService)
         {
             _navigationService = navigationService;
+            _appViewService = appViewService;
             _stringsService = stringsService;
             _firebaseAuthentication = firebaseAuthentication;
 
@@ -62,7 +66,7 @@ namespace MisGastos.Prism.ViewModels
 
         public DelegateCommand RegisterButtonCommand =>
             _registerButtonCommand ?? (_registerButtonCommand =
-            new DelegateCommand(RegisterAsync));
+            new DelegateCommand(async ()=> await RegisterAsync()));
 
         public DelegateCommand BackButtonCommand =>
             _backButtonCommand ?? (_backButtonCommand =
@@ -126,16 +130,16 @@ namespace MisGastos.Prism.ViewModels
         /// <summary>
         /// Register user async.
         /// </summary>
-        public async void RegisterAsync()
+        public async Task RegisterAsync()
         {
-            if (await ValidationForm(true))
+            if (!await ValidationForm(true))
             {
                 return;
             }
 
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            if (_appViewService.InternetConnect())
             {
-                await App.Current.MainPage.DisplayAlert(
+                await _appViewService.DisplayAlert(
                     _stringsService.ErrorTitleText,
                     _stringsService.ErrorNetworkAccessText,
                     _stringsService.AceptButton);
@@ -145,15 +149,15 @@ namespace MisGastos.Prism.ViewModels
             var response = await _firebaseAuthentication.RegisterWithEmailAndPassword(EmailEntry, PasswordEntry);
             if (response.IsSucces)
             {
-                await App.Current.MainPage.DisplayAlert("Bienvenido",
+                await _appViewService.DisplayAlert("Bienvenido",
                    "Usuario registrado correctamente.",
                    _stringsService.AceptButton);
                 await NavigationService.GoBackAsync();
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert(_stringsService.ErrorTitleText,
-                   response.Exception.Message,
+                await _appViewService.DisplayAlert(_stringsService.ErrorTitleText,
+                   response?.Exception?.Message,
                    _stringsService.AceptButton);
             }
         }
@@ -198,8 +202,8 @@ namespace MisGastos.Prism.ViewModels
 
             if (showDisplayAlert)
             {
-                var errorText = string.Format(_stringsService.ErrorEntryText, entryName ?? string.Empty);
-                await App.Current.MainPage.DisplayAlert(_stringsService.ErrorTitleText,
+                var errorText = string.Format(_stringsService.ErrorEntryText ?? string.Empty, entryName ?? string.Empty);
+                await _appViewService.DisplayAlert(_stringsService.ErrorTitleText,
                     errorText,
                     _stringsService.AceptButton);
             }

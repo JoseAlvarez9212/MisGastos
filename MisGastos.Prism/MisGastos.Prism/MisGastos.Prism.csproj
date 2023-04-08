@@ -58,6 +58,7 @@
     <None Remove="Resources\icon\ic_apple.svg" />
     <None Remove="Resources\icon\ic_google.svg" />
     <None Remove="Resources\icon\ic_app_name.svg" />
+    <None Remove="Services\AppView\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
@@ -77,5 +78,6 @@
     <Folder Include="Views\Effects\" />
     <Folder Include="Models\FirebaseDB\" />
     <Folder Include="Resources\icon\" />
+    <Folder Include="Services\AppView\" />
   </ItemGroup>
 </Project>
