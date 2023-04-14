@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using Newtonsoft.Json;
 
 namespace MisGastos.Prism.Models.FirebaseDB

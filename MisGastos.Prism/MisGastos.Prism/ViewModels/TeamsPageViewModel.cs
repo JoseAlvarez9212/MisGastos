@@ -1,24 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using DryIoc;
 using MisGastos.Prism.Enums;
-using MisGastos.Prism.ItemViewModels;
+//using Firebase.Auth;
+//using Firebase.Auth.Providers;
+using MisGastos.Prism.Helpers;
+using MisGastos.Prism.Models;
 using MisGastos.Prism.Models.FirebaseDB;
+using MisGastos.Prism.Services.API;
 using MisGastos.Prism.Services.Firebase;
 using MisGastos.Prism.Services.Resources.Strings;
+using MisGastos.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
+using Prism.Mvvm;
 using Prism.Navigation;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Essentials;
+using Xamarin.Forms.Internals;
 
 namespace MisGastos.Prism.ViewModels
 {
     public class TeamsPageViewModel : ViewModelBase
-	{
-		private readonly INavigationService _navigationService;
+    {
+        private const string PARAM_TEAM = nameof(TeamModel);
+
+        private readonly INavigationService _navigationService;
         private readonly IStringsService _stringsService;
         private readonly IFirebaseDataBaseService _firebaseDataBase;
-        private DelegateCommand _continueButtonCommand;
-        ObservableCollection<TeamModel> _teams;
+        private DelegateCommand _addTeamCommand;
+        private DelegateCommand _continueCommand;
+        ObservableCollection<ItemViewModelAddCommand<TeamModel>> _teams;
         private bool _isVisibleTextEmptyList;
         private bool _isVisibleTeamsCV;
 
@@ -43,9 +59,10 @@ namespace MisGastos.Prism.ViewModels
         }
 
         #region View
-        public DelegateCommand ContinueButtonCommand =>
-            _continueButtonCommand ?? (_continueButtonCommand =
-            new DelegateCommand(ContinueButton));
+        public DelegateCommand AddTeamCommand =>
+            _addTeamCommand ?? (_addTeamCommand =
+            new DelegateCommand(AddTeam));
+
 
         public bool IsVisibleTextEmptyList
         {
@@ -59,7 +76,7 @@ namespace MisGastos.Prism.ViewModels
             set => SetProperty(ref _isVisibleTeamsCV, value);
         }
 
-        public ObservableCollection<TeamModel> Teams
+        public ObservableCollection<ItemViewModelAddCommand<TeamModel>> Teams
         {
             get => _teams;
             set => SetProperty(ref _teams, value);
@@ -71,7 +88,7 @@ namespace MisGastos.Prism.ViewModels
             var teams = await _firebaseDataBase.GetItemsAsync<TeamModel>(FirebaseNodeType.Teams);
             if (teams != null)
             {
-                Teams = new ObservableCollection<TeamModel>(teams);
+                Teams = ConvertItemToCommand(teams);
                 IsVisibleTeamsCV = Teams.Count > 0;
                 IsVisibleTextEmptyList = Teams.Count == 0;
             }
@@ -81,10 +98,29 @@ namespace MisGastos.Prism.ViewModels
             }
         }
 
+        private ObservableCollection<ItemViewModelAddCommand<TeamModel>> ConvertItemToCommand(IEnumerable<TeamModel> teamModel)
+        {
+            var OCTeamItemVieModel = new ObservableCollection<ItemViewModelAddCommand<TeamModel>>();
+            teamModel.ForEach(item =>
+            {
+                var cm = new DelegateCommand(() => Continue(item));
+                var teamItem = new ItemViewModelAddCommand<TeamModel>(item, cm);
+                OCTeamItemVieModel.Add(teamItem);
+            });
+            return OCTeamItemVieModel;
+        }
+
+        private async void Continue(TeamModel teamModel)
+        {
+            var parameters = new NavigationParameters();
+            parameters.Add(PARAM_TEAM, teamModel);
+            await _navigationService.NavigateAsync($"{nameof(ExpenseTabbedPage)}", parameters, animated: true);
+        }
+
         /// <summary>
         /// ContinueButton create team
         /// </summary>
-        private async void ContinueButton()
+        private async void AddTeam()
         {
             string teamName = await AddTeamDisplayPromptAsync();
             if (string.IsNullOrEmpty(teamName))
@@ -107,7 +143,7 @@ namespace MisGastos.Prism.ViewModels
             var addTeam = await _firebaseDataBase.AddItemAsync<TeamModel>(team, FirebaseNodeType.Teams);
             if (addTeam)
             {
-                await App.Current.MainPage.DisplayAlert("Success","equipo agregado correctamente.","aceptar");
+                await App.Current.MainPage.DisplayAlert("Success", "equipo agregado correctamente.", "aceptar");
                 GetTeamsAsync();
             }
             else
@@ -122,7 +158,7 @@ namespace MisGastos.Prism.ViewModels
                 placeholder: "Ej. Amor, Amigos, Compadres, etc...",
                 keyboard: Xamarin.Forms.Keyboard.Text,
                 accept: "Agregar",
-                cancel: "Cancelar");
+                cancel: "Salir");
             return teamName;
         }
     }

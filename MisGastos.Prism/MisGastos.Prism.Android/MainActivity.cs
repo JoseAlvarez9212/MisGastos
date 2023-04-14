@@ -23,6 +23,7 @@ namespace MisGastos.Prism.Droid
             //FirebaseApp.InitializeApp(Application.Context);
             CachedImageRenderer.Init(true);
             var ignore = typeof(SvgCachedImage);
+          
             LoadApplication(new App(new AndroidInitializer()));
         }
 

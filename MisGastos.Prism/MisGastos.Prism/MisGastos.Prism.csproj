@@ -21,6 +21,8 @@
     <EmbeddedResource Include="Resources\icon\ic_apple.svg" />
     <EmbeddedResource Include="Resources\icon\ic_google.svg" />
     <EmbeddedResource Include="Resources\icon\ic_app_name.svg" />
+    <EmbeddedResource Include="Resources\icon\ic_arrow.svg" />
+    <EmbeddedResource Include="Resources\icon\ic_info.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\AddExpensePage.xaml">
@@ -59,6 +61,8 @@
     <None Remove="Resources\icon\ic_google.svg" />
     <None Remove="Resources\icon\ic_app_name.svg" />
     <None Remove="Services\AppView\" />
+    <None Remove="Resources\icon\ic_arrow.svg" />
+    <None Remove="Resources\icon\ic_info.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />

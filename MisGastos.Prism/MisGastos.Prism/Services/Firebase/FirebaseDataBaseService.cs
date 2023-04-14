@@ -19,6 +19,7 @@ namespace MisGastos.Prism.Services.Firebase
 		{
             _environmentService = environmentService;
             _firebaseClient = new FirebaseClient(_environmentService.FirebaseProjectID);
+			
         }
 
 		public async Task<bool> AddItemAsync<T>(T item, FirebaseNodeType nodeType) where T: class

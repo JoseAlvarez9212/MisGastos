@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:prism="http://prismlibrary.com"
+            prism:ViewModelLocator.AutowireViewModel="True"
+            x:Class="MisGastos.Prism.Views.ExpenseTabbedPage"
+            xmlns:localView="clr-namespace:MisGastos.Prism.Views"
+            xmlns:localEffects="clr-namespace:MisGastos.Prism.Views.Effects"
+            xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="#F6F2F5"
+            SelectedTabColor="#4F0A3A"
+            UnselectedTabColor="#6B6A6A"
+            Title="{Binding Title}">
+    <TabbedPage.Effects>
+        <localEffects:TabbedPageEffect/>
+    </TabbedPage.Effects>
+
+    <TabbedPage.Children>
+        <localView:HomePage Title="Mis Gastos" IconImageSource="icon"/>
+        <ContentPage Title="Equipo" IconImageSource="icon"/>
+        <ContentPage Title="Configuración" IconImageSource="icon"/>
+    </TabbedPage.Children>
+</TabbedPage>

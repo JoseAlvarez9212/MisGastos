@@ -26,7 +26,7 @@ namespace MisGastos.Prism
         {
             InitializeComponent();
             await NavigationService.NavigateAsync($"MyNavigationPage/{nameof(LoginPage)}");
-            //await NavigationService.NavigateAsync($"{nameof(TeamsPage)}");
+            //await NavigationService.NavigateAsync($"{nameof(ExpenseTabbedPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -38,6 +38,7 @@ namespace MisGastos.Prism
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();
+            containerRegistry.RegisterForNavigation<ExpenseTabbedPage, ExpenseTabbedPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<AddExpensePage, AddExpensePageViewModel>();
 
