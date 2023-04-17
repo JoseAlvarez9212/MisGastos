@@ -7,7 +7,7 @@ namespace MisGastos.Prism.Models.FirebaseDB
 {
 	public class TeamModel
 	{
-		[JsonProperty("name")]
+        [JsonProperty("name")]
 		public string Name { get; set; }
 
         [JsonProperty("users")]

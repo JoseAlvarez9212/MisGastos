@@ -1,9 +1,11 @@
 ﻿using Android.Content.Res;
 using Android.Graphics.Drawables;
+using Android.Views.Animations;
 using Android.Widget;
 using MisGastos.Prism.Droid.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms.PlatformConfiguration;
 
 [assembly: ResolutionGroupName("MGE")]
 [assembly: ExportEffect(typeof(EntryEffect), nameof(EntryEffect))]
@@ -26,6 +28,10 @@ namespace MisGastos.Prism.Droid.Effects
                 pEntry.PaddingRight,
                 pEntry.PaddingBottom);
             pEntry.Background = GetBackgroundDrawable();
+
+            //var hintTextTransition = AnimationUtils.LoadAnimation(Android.App.Application.Context,Android.Resource.Animation.SlideOutRight);
+
+            //pEntry.StartAnimation(hintTextTransition);
         }
 
         protected override void OnDetached()

@@ -31,7 +31,7 @@ namespace MisGastos.Prism.ViewModels
 
         private readonly INavigationService _navigationService;
         private readonly IStringsService _stringsService;
-        private readonly IFirebaseDataBaseService _firebaseDataBase;
+        private readonly IFirebaseDataContainerService _firebaseDataBase;
         private DelegateCommand _addTeamCommand;
         private DelegateCommand _continueCommand;
         ObservableCollection<ItemViewModelAddCommand<TeamModel>> _teams;
@@ -40,7 +40,7 @@ namespace MisGastos.Prism.ViewModels
 
         public TeamsPageViewModel(INavigationService navigationService,
             IStringsService stringsService,
-            IFirebaseDataBaseService firebaseDataBase) :
+            IFirebaseDataContainerService firebaseDataBase) :
             base(navigationService)
         {
             _navigationService = navigationService;
@@ -83,9 +83,12 @@ namespace MisGastos.Prism.ViewModels
         }
         #endregion
 
+        /// <summary>
+        /// Get Teams async.
+        /// </summary>
         private async void GetTeamsAsync()
-        {
-            var teams = await _firebaseDataBase.GetItemsAsync<TeamModel>(FirebaseNodeType.Teams);
+        { 
+            var teams = await _firebaseDataBase.TeamsData.GetItemsAsync(true);
             if (teams != null)
             {
                 Teams = ConvertItemToCommand(teams);
@@ -98,6 +101,11 @@ namespace MisGastos.Prism.ViewModels
             }
         }
 
+        /// <summary>
+        /// Convert item to command.
+        /// </summary>
+        /// <param name="teamModel">TeamModel IEnumerable.</param>
+        /// <returns>ItemViewModel with command.</returns>
         private ObservableCollection<ItemViewModelAddCommand<TeamModel>> ConvertItemToCommand(IEnumerable<TeamModel> teamModel)
         {
             var OCTeamItemVieModel = new ObservableCollection<ItemViewModelAddCommand<TeamModel>>();
@@ -110,6 +118,10 @@ namespace MisGastos.Prism.ViewModels
             return OCTeamItemVieModel;
         }
 
+        /// <summary>
+        /// Continue to ExpenseTabbedPage.
+        /// </summary>
+        /// <param name="teamModel">TeamModel.</param>
         private async void Continue(TeamModel teamModel)
         {
             var parameters = new NavigationParameters();
@@ -140,7 +152,7 @@ namespace MisGastos.Prism.ViewModels
                     }
                 }
             };
-            var addTeam = await _firebaseDataBase.AddItemAsync<TeamModel>(team, FirebaseNodeType.Teams);
+            var addTeam = await _firebaseDataBase.TeamsData.AddItemAsync(team);
             if (addTeam)
             {
                 await App.Current.MainPage.DisplayAlert("Success", "equipo agregado correctamente.", "aceptar");

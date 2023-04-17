@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MisGastos.Prism.Views.HomePage"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              Title="{Binding Title}"         
              BackgroundColor="#F6F2F5">
      <RelativeLayout>
@@ -96,11 +97,15 @@
                CornerRadius="15"
                BorderColor="Transparent"
                HasShadow="False"
-               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.89, Constant=0}"
                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.8, Constant=0}"
                RelativeLayout.WidthConstraint="60"
-               RelativeLayout.HeightConstraint="60">
-            <Label Text="+" TextColor="White" FontSize="Medium" Margin="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+               RelativeLayout.HeightConstraint="60"
+               Padding="16">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding AddExpenseCommand}"/>
+            </Frame.GestureRecognizers>
+           <ffimageloadingsvg:SvgCachedImage Source="resource://MisGastos.Prism.Resources.icon.ic_add_expense.svg"/>
         </Frame>
      </RelativeLayout>
 </ContentPage>

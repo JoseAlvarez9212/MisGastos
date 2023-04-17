@@ -24,10 +24,10 @@ namespace MisGastos.Prism.Droid.Services.FirebaseSerices
                 var auth = await _FirebaseAuth.CreateUserWithEmailAndPasswordAsync(email, password);
                 return FirebaseResult(auth);
             }
-            catch (FirebaseAuthException ex)
-            {
-                return new FirebaseResponse(ex);
-            }
+            //catch (FirebaseAuthException ex)
+            //{
+            //    return new FirebaseResponse(ex);
+            //}
             catch (Exception ex)
             {
                 return new FirebaseResponse(ex);
@@ -63,10 +63,10 @@ namespace MisGastos.Prism.Droid.Services.FirebaseSerices
                 var auth = await _FirebaseAuth.SignInWithEmailAndPasswordAsync(email, password);
                 return FirebaseResult(auth);
             }
-            catch (FirebaseAuthException ex)
-            {
-                return new FirebaseResponse(ex);
-            }
+            //catch (FirebaseAuthException ex)
+            //{
+            //    return new FirebaseResponse(ex);
+            //}
             catch (Exception ex)
             {
                 return new FirebaseResponse(ex);
@@ -91,13 +91,13 @@ namespace MisGastos.Prism.Droid.Services.FirebaseSerices
             var firebaseResponse = new FirebaseResponse
             {
                 IsSucces = authResult.User != null,
-                User = new User
-                {
-                    Email = authResult.User.Email,
-                    UrlPhoto = authResult.User.PhotoUrl?.ToString(),
-                    UserName = authResult.AdditionalUserInfo?.Username,
-                    Uid = authResult.User.Uid
-                },
+                //User = new User
+                //{
+                //    Email = authResult.User.Email,
+                //    UrlPhoto = authResult.User.PhotoUrl?.ToString(),
+                //    UserName = authResult.AdditionalUserInfo?.Username,
+                //    Uid = authResult.User.Uid
+                //},
                 Token = authResult.User.GetIdToken(false).Result.ToString(),
                 ProviderType = authResult.AdditionalUserInfo?.ProviderId
             };

@@ -3,6 +3,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="MisGastos.Prism.Views.AddExpensePage">
+             x:Class="MisGastos.Prism.Views.AddExpensePage"
+             xmlns:localEffects="clr-namespace:MisGastos.Prism.Views.Effects"
+             BackgroundColor="#F6F2F5"
+             Title="Agregar Gasto">
+    <StackLayout Padding="20" Visual="Material">
+        <Entry Text="{Binding TitleEntry}"
+               Placeholder="Titulo"
+               Keyboard="Text"
+               >
+            <Entry.Behaviors>
+               <prism:EventToCommandBehavior EventName="Unfocused"
+                                                Command="{Binding EntryUnfocusedCommand}"/>
+            </Entry.Behaviors>
+        </Entry>
+        <Editor Text="{Binding DescriptionEditor}"
+                Placeholder="Descripción"
+                HeightRequest="100">
+            <Editor.Effects>
+                <localEffects:EntryEffect/>
+            </Editor.Effects>
+        </Editor>
+        <Entry Text="{Binding AmountEntry}"
+               Placeholder="Cantidad"
+               ClearButtonVisibility="WhileEditing"
+               Keyboard="Text">
+            <Entry.Effects>
+               <localEffects:EntryEffect/>
+            </Entry.Effects>
+            <Entry.Behaviors>
+               <prism:EventToCommandBehavior EventName="Unfocused"
+                                                Command="{Binding EntryUnfocusedCommand}"/>
+            </Entry.Behaviors>
+        </Entry>
+        <DatePicker>
+            <DatePicker.Effects>
+                <localEffects:EntryEffect/>
+            </DatePicker.Effects>
+        </DatePicker>
+        <Entry Text="{Binding AmountEntry}"
+               Placeholder="Ubicacion"
+               ClearButtonVisibility="WhileEditing"
+               Keyboard="Text">
+            <Entry.Effects>
+               <localEffects:EntryEffect/>
+            </Entry.Effects>
+            <Entry.Behaviors>
+               <prism:EventToCommandBehavior EventName="Unfocused"
+                                                Command="{Binding EntryUnfocusedCommand}"/>
+            </Entry.Behaviors>
+        </Entry>
+
+        <Button Command="{Binding AddTeamCommand}"
+                IsEnabled="{Binding AddTeamEnabled}"
+                Text="Agregar"
+                BackgroundColor="#4F0A3A"
+                TextColor="White"
+                VerticalOptions="EndAndExpand">
+            <Button.Triggers>
+                <Trigger Property="IsEnabled"
+                            Value="False"
+                            TargetType="Button">
+                    <Setter Property="BackgroundColor"
+                            Value="#F6F2F5"/>
+                </Trigger>
+            </Button.Triggers>
+        </Button>
+    </StackLayout>
   
 </ContentPage>

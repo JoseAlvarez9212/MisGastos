@@ -45,7 +45,8 @@ namespace MisGastos.Prism
             containerRegistry.Register<IEnvironmentService, EnvironmentService>();
             containerRegistry.Register<IAppViewService, AppViewService>();
             containerRegistry.Register<IStringsService, StringsService>();
-            containerRegistry.Register<IFirebaseDataBaseService, FirebaseDataBaseService>();
+            //containerRegistry.Register<IFirebaseDataBaseService, FirebaseDataBaseService>();
+            containerRegistry.Register<IFirebaseDataContainerService, FirebaseDataContainerService>();
 
             if (AppInit.ENVIRONMENT == Enums.EnvironmentsType.Mock)
             {

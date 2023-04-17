@@ -1,4 +1,6 @@
 ﻿using MisGastos.Prism.ItemViewModels;
+using MisGastos.Prism.Models.FirebaseDB;
+using MisGastos.Prism.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -13,6 +15,7 @@ namespace MisGastos.Prism.ViewModels
 	public class HomePageViewModel : ViewModelBase
 	{
         private readonly INavigationService _navigationService;
+        private DelegateCommand _addExpenseCommand;
         ObservableCollection<ExpenseItemViewModel> _my_expenses;
         ObservableCollection<GroupExpenseItemViewModel> _group_expenses;
 
@@ -106,6 +109,10 @@ namespace MisGastos.Prism.ViewModels
             };
         }
 
+        public DelegateCommand AddExpenseCommand =>
+            _addExpenseCommand ?? (_addExpenseCommand =
+            new DelegateCommand(AddTExpense));
+
         public ObservableCollection<ExpenseItemViewModel> MyExpenses
         {
             get => _my_expenses;
@@ -116,6 +123,13 @@ namespace MisGastos.Prism.ViewModels
         {
             get => _group_expenses;
             set => SetProperty(ref _group_expenses, value);
+        }
+
+        private async void AddTExpense()
+        {
+            //var parameters = new NavigationParameters();
+            //parameters.Add(PARAM_TEAM, teamModel);
+            await _navigationService.NavigateAsync($"{nameof(AddExpensePage)}");
         }
     }
 }

@@ -12,6 +12,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Refit" Version="6.3.2" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
     <EmbeddedResource Include="Resources\icon\ic_app_name.svg" />
     <EmbeddedResource Include="Resources\icon\ic_arrow.svg" />
     <EmbeddedResource Include="Resources\icon\ic_info.svg" />
+    <EmbeddedResource Include="Resources\icon\ic_add_expense.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\AddExpensePage.xaml">
@@ -63,6 +65,7 @@
     <None Remove="Services\AppView\" />
     <None Remove="Resources\icon\ic_arrow.svg" />
     <None Remove="Resources\icon\ic_info.svg" />
+    <None Remove="Resources\icon\ic_add_expense.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemViewModels\" />
